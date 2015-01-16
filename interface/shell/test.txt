@@ -1,0 +1,15 @@
+echo "Hello World !"
+sleep 1 s
+version
+sleep 1 s
+echo Message 1
+sleep 1 s
+echo Message 2
+sleep 1 s
+echo Message 3
+sleep 1 s
+echo Message 4
+sleep 1 s
+echo Message 5
+sleep 1 s
+echo Goodbye !!
