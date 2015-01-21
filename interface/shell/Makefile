@@ -52,7 +52,9 @@ shell_config.h:
 	echo "#ifndef __SHELL_CONFIG_H__" >> $@
 	echo "#define __SHELL_CONFIG_H__" >> $@
 ifdef GLIB
+	echo "#ifndef ENABLE_GLIB" >> $@
 	echo "#define ENABLE_GLIB" >> $@
+	echo "#endif" >> $@
 endif
 ifdef ENABLE_CMD_ALIAS
 	echo "#define ENABLE_CMD_ALIAS" >> $@
