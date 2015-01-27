@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
+<!DOCTYPE glade-project SYSTEM "http://glade.gnome.org/glade-project-2.0.dtd">
+
+<glade-project>
+  <name>Gui</name>
+  <program_name>gui</program_name>
+  <source_directory>gtk+-2.0</source_directory>
+  <pixmaps_directory></pixmaps_directory>
+  <gnome_support>FALSE</gnome_support>
+  <output_main_file>FALSE</output_main_file>
+  <output_build_files>FALSE</output_build_files>
+</glade-project>

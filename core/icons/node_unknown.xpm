@@ -1,0 +1,24 @@
+/* XPM */
+static const char * xpm_unknown_data[] = {
+  "20 17 3 1",		 
+  "       c None",	 
+  ".      c #FFFF00000000",
+  "X      c #FFFFFFFFFFFF",
+  "                     ",
+  "   ..............    ",
+  "   .XXXXXXXXXXXX.    ",
+  "   .XXXXXXXXXXXX.    ",
+  "   .X..XXXXXX..X.    ",
+  "   .XX..XXXX..XX.    ",
+  "   .XXX..XX..XXX.    ",
+  "   .XXXX....XXXX.    ",
+  "   .XXXXX..XXXXX.    ",
+  "   .XXXX....XXXX.    ",
+  "   .XXX..XX..XXX.    ",
+  "   .XX..XXXX..XX.    ",
+  "   .X..XXXXXX..X.    ",
+  "   .XXXXXXXXXXXX.    ",
+  "   ..............    ",
+  "                     ",
+  "                     "
+};

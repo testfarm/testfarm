@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=TestFarm Launch Pad
+Comment=Automated Testing Platform for Embedded Software
+Exec=testfarm-launch
+Icon=testfarm.png
+Terminal=false
+Type=Application
+Categories=Application;Development;

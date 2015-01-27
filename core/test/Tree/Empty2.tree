@@ -1,0 +1,11 @@
+#$DESCRIPTION Tree Structure : empty sequence, empty branch file
+#$REFERENCE TestFarm Test Suite
+
+##
+## Expected result:
+## Load warning message: SEQ 'EmptySeq2' ignored: branch file is empty
+##
+
+Prologue
+EmptySeq2
+Epilogue

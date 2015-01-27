@@ -1,0 +1,73 @@
+  <style type="text/css">
+    body {
+      font-family: Sans-serif;
+      font-size: 12px;
+      background: #EEC;
+    }
+    h2 {
+      font-variant: small-caps;
+      margin-top: 2em;
+      border-bottom-style: dotted;
+      border-bottom-color: #555;
+      border-bottom-width: 1px;
+    }
+    .in_title {
+      font-size: 16px;
+      color: #555;
+    }
+    .in_header {
+    }
+    .summary {
+    }
+    table.verdict, table.system {
+      background-color: #eee;
+      border-bottom: solid 1px #999;
+      border-right: solid 1px #999;
+      border-collapse: separate;
+      font-size: 12px;
+    }
+    tr.header {
+      background-color: #bbb;
+      color: black;
+      font-style: italic;
+      font-weight: bold;
+      empty-cells: hide;
+    }
+    td.header {
+      border-right: solid 1px #999;
+      border-bottom: solid 1px #999;
+      padding: 0 0.5em 0 0.5em;
+      white-space: nowrap;
+    }
+    tr.line0, tr.content {
+      background-color: #e0e0e0;
+      text-align: left;
+    }
+    td.line0, td.content {
+      border-bottom: solid 1px #bbb;
+      border-right: solid 1px #bbb;
+      padding: 0 0.5em 0 0.5em;
+      white-space: nowrap;
+    }
+    tr.line1 {
+      background-color: #d0d0d0;
+      text-align: left;
+    }
+    td.line1 {
+      border-bottom: solid 1px #bbb;
+      border-right: solid 1px #bbb;
+      padding: 0 0.5em 0 0.5em;
+      white-space: nowrap;
+    }
+    .dump {
+    }
+    #in {
+      color: blue;
+    }
+    #out {
+      color: black;
+    }
+    #err {
+      color: #A00;
+    }
+  </style>

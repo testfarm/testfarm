@@ -17,7 +17,6 @@
 #include <errno.h>
 #include <unistd.h>
 
-#include "version.h"
 #include "sig.h"
 #include "shell.h"
 

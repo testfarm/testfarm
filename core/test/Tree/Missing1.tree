@@ -1,0 +1,11 @@
+#$DESCRIPTION Tree Structure : empty sequence, missing directory
+#$REFERENCE TestFarm Test Suite
+
+##
+## Expected result:
+## Load error message: Cannot find a valid object "MissingObject" in directory .
+##
+
+Prologue
+MissingObject
+Epilogue

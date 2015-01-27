@@ -1,0 +1,11 @@
+#$DESCRIPTION Tree Structure : empty sequence, missing branch file
+#$REFERENCE TestFarm Test Suite
+
+##
+## Expected result:
+## Load warning message: No Tree Branch file found in directory "./EmptySeq1"
+##
+
+Prologue
+EmptySeq1
+Epilogue

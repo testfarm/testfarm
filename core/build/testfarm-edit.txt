@@ -1,0 +1,39 @@
+===================================
+= Commandes vers éditeur de texte =
+===================================
+
+- Chargement/sélection d'un fichier
+- Insertion/Mise à jour des attributs (Description, Reference, Criticite)
+- Insertion d'un step .wizdef
+- Localisation d'une ligne
+
+----- References
+http://www.tac.nyc.ny.us/manuals/elisp/elisp_toc.html
+http://www.emacswiki.org/cgi-bin/wiki/GnuClient
+
+----- Mise en route de GnuServ
+(gnuserv-start) (setq gnuserv-frame (selected-frame))
+
+----- Connexion à GnuServ
+Socket Unix Stream /tmp/gsrvdir<euid>/gsrv
+
+----- Edition de texte avec GnuServ
+- Select proper buffer:
+  (buffer-list) => renvoie la liste des buffers.
+  (current-buffer) => Renvoie le buffer courant
+  (set-buffer "<buffername>") => Sélectionne un buffer sans le rendre visible.
+  (switch-to-buffer "<buffername>") => Sélectionne un buffer et le rend visible.
+- Sauvegarder la position courante du curseur avec un marqueur
+  (setq m1 (make-marker)) (set-marker m1 (point))
+- Check if directive is present:
+  (re-search-backward "^#$DESCRIPTION *" nil t) => position ou nil
+  (re-search-forward "^#$DESCRIPTION *" nil t) => position ou nil
+- Si directive présente, remplacer:
+  (goto-char 0) (perform-replace "<regex>" "<replacement>" nil t nil)
+  EXEMPLE$ gnudoit '(goto-char 0) (perform-replace "^#$DESCRIPTION *.*$" "#$DESCRIPTION Hello" nil t nil)'
+- Si directive absente, insérer au début:
+  EXEMPLE$ gnudoit '(goto-char 0) (insert "#$DESCRIPTION Hello") (newline)'
+- Repositionner le curseur à sa position d'origine:
+  (goto-char m1) (set-marker m1 nil)
+- Sauvegarder les modifs:
+  (save-buffer)

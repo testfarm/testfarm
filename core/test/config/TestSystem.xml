@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="/opt/testfarm/lib/config.xsl"?>
+<!DOCTYPE CONFIG SYSTEM "/opt/testfarm/lib/config.dtd">
+
+<!-- $Revision: 657 $ -->
+<!-- $Date: 2007-07-25 09:08:42 +0200 (mer., 25 juil. 2007) $ -->
+
+<CONFIG>
+  <DESCRIPTION>
+    Sample TestFarm System Configuration
+  </DESCRIPTION>
+  <INFO id="Revision">
+    $Revision: 657 $
+  </INFO>
+  <INTERFACE id="INTERFACE" type="Echo">
+    <INFO id="serial">
+      001
+    </INFO>
+    <INFO id="version" />
+    <FEATURE id="Message">
+      <DESCRIPTION>Dump a Message</DESCRIPTION>
+      <START>
+        return 0;
+      </START>
+      <STOP>
+      </STOP>
+      <ACTION id="Echo">
+        $I->echo("@_");
+      </ACTION>
+      <ACTION id="TrigEcho" proto="$">
+        return $I->TrigDef('ECHO', "ECHO +@_");
+      </ACTION>
+    </FEATURE>
+  </INTERFACE>
+</CONFIG>

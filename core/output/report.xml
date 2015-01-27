@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<!-- TestFarm Default Report Layout -->
+<!-- $Revision: 274 $ -->
+<!-- $Date: 2006-11-11 18:45:38 +0100 (sam., 11 nov. 2006) $ -->
+
+<REPORT_CONFIG>
+  <show_standard>1</show_standard>
+  <show_in_title>1</show_in_title>
+  <show_in_header>1</show_in_header>
+  <show_in_verdict>1</show_in_verdict>
+  <show_operator>0</show_operator>
+  <show_duration>1</show_duration>
+  <show_scenario>1</show_scenario>
+  <show_case>1</show_case>
+  <show_validation_parens>1</show_validation_parens>
+  <show_validation_state>1</show_validation_state>
+  <show_criticity>1</show_criticity>
+  <show_nonsignificant>0</show_nonsignificant>
+  <show_log>0</show_log>
+  <show_verdict_passed>1</show_verdict_passed>
+  <show_verdict_failed>1</show_verdict_failed>
+  <show_verdict_inconclusive>1</show_verdict_inconclusive>
+  <show_verdict_skip>1</show_verdict_skip>
+  <show_dump>1</show_dump>
+  <show_dump_passed>1</show_dump_passed>
+  <show_dump_failed>1</show_dump_failed>
+  <show_dump_inconclusive>1</show_dump_inconclusive>
+  <show_dump_skip>1</show_dump_skip>
+</REPORT_CONFIG>

@@ -19,6 +19,9 @@ ROOT_DIR = $(shell git rev-parse --show-cdup 2>/dev/null)
 ROOT_DIR ?= .
 TOOLS_DIR = $(ROOT_DIR)/tools
 
+DESTDIR = /opt/testfarm
+INSTALLDIR = $(ROOT_DIR)/tmp/opt/testfarm
+
 #
 # Version numbers
 #
@@ -36,11 +39,34 @@ BUILDDATE = $(shell date +%y%m%d)
 VERSION = $(SRCVERSION)-$(BUILDDATE)
 
 #
+# Package check
+#
+ifdef GLIB
+CHECK_PACKAGES_deb += libglib2.0-dev
+CHECK_PACKAGES_rpm += glib2-devel
+endif
+
+ifdef GTK
+CHECK_PACKAGES_deb += libgtk2.0-dev
+CHECK_PACKAGES_rpm += gtk2-devel
+endif
+
+#
 # Compile flags
 #
 ARCH ?= $(shell arch)
-CFLAGS = -Wall
+CFLAGS = -Wall -DVERSION=\"$(SRCVERSION)\"
 LDFLAGS =
+
+ifdef GLIB
+CFLAGS  += $(shell pkg-config --cflags $(GLIB))
+LDFLAGS += $(shell pkg-config --libs $(GLIB))
+endif
+
+ifdef GTK
+CFLAGS  += $(shell pkg-config --cflags $(GTK))
+LDFLAGS += $(shell pkg-config --libs $(GTK))
+endif
 
 #
 # Compile rules
@@ -59,3 +85,11 @@ $(BINS):
 
 clean::
 	$(RM) $(BINS) $(LIBS) *.o *~
+
+.PHONY: install
+install: $(INSTALLDIR)
+$(INSTALLDIR):
+	$(MKDIR) $(INSTALLDIR)
+
+distclean: clean
+	$(RM) $(INSTALLDIR)

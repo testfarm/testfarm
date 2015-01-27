@@ -1,0 +1,11 @@
+#$DESCRIPTION Sample Automated Testing Environment
+#$REFERENCE TestFarm Baseline
+#$SYSTEM TestSystem
+
+## $Revision: 1.6 $
+## $Date: 2005/12/02 10:20:29 $
+
+Prologue
+PerlCase
+TestSeq
+Epilogue

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<CRITICITY_CONFIG>
+  <CRITICITY id="Near" color="#008800" level="1"/>
+  <CRITICITY id="Light" color="#997700" level="2"/>
+  <CRITICITY id="Serious" color="#CC6600" level="3"/>
+  <CRITICITY id="Major" color="#990000" level="4"/>
+  <CRITICITY id="Catastrophic" color="#000000" level="5"/>
+</CRITICITY_CONFIG>

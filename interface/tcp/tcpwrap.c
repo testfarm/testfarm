@@ -20,7 +20,6 @@
 #include <netinet/in.h>
 
 #include "tcp.h"
-#include "version.h"
 
 int respawn = 0;
 int debug = 0;

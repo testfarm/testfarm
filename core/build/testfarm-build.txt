@@ -1,0 +1,185 @@
+==================
+= Test Tree View =
+==================
+
+----- DESCRIPTION
+La suite de test est visualisée dans un arbre identique à celui de l'environnement
+d'exécution:
+- Racine de l'arbre = [T] bleu
+- Séquence = [S] bleu
+- Cas de Test = [C] noir
+- Noeud incomplètement défini (référencé mais inexistant) = [X] rouge
+
+La structure du TT se modifie automatiquement à partir des évènements FAM détectés
+sur les éléments de la suite de test: répertoires, fichiers .tree, scripts (.pm/.wiz).
+
+Un répertoire ou script non référencé dans un fichier n'est pas visualisé.
+Ce cas survient lorsqu'un rép. est créé ou déplacé/renomé manuellement (mkdir ou mv).
+
+Lorsqu'un élément existant est référencé dans l'arbre, il est automatiquement lu et
+affiché.
+
+Lorsqu'un nouvel élément est créé à partir du builder, il est référencé et
+physiquement créé.
+
+Un élément de fichier .tree qui n'existe pas physiquement (répertoire ou script)
+est signalé par une icone [X] de couleur rouge. Son nom est affiché en gris.
+Il pourra alors etre créé manuellement de manière externe ou à partir du builder.
+Dans les 2 cas, l'affichage sera mis à jour automatiquement.
+
+Un élément de fichier .tree précédé d'un '#~' est considéré comme désactivé.
+Il est référencé et visualisé en gris. Il est visible pour édition mais ne sera pas
+pris en compte lors de l'exécution.
+
+----- PLAN DE TEST
+- Création répertoire @/seq1
+  => pas de visualisation
+- Référencement @/seq1
+  => apparition [T][S]seq1 vide
+- Référencement @/seq2
+  => apparition [T][X]seq2
+- Création répertoire @/seq2
+  => transformation de [T][X]seq2 en [T][S]seq2 vide
+- Référencement @/case1
+  => apparition [T][X]case1
+- Création fichier case1.wiz
+  => transformation de [T][X]case1 en [T][C]case1
+- Ajout flag ABORT sur référencement case1
+  => visualisation du flag ABORT sur [T][C]case1
+- Suppression flag ABORT sur référencement case1
+  => disparition du flag ABORT sur [T][C]case1
+- Référencement @/seq1/case1
+  => apparition [T][S]seq1[X]case1
+- Création fichier case1.pm
+  => transformation de [T][S]seq1[X] en [T][S]seq1[C]case1
+- Création répertoire @/seq1/seq1
+  => pas de visualisation
+- Création fichiers @/seq1/seq1/case1 et @/seq1/seq1/case2
+  => pas de visualisation
+- Référencement @/seq1/seq1/case1 et @/seq1/seq1/case2
+  => pas de visualisation
+- Référencement @/seq1/seq1	
+  => apparition [T][S]seq1[S]seq1[C]case1 et [T][S]seq1[S]seq1[C]case2
+- Déplacement répertoire @/seq1/seq1 vers @/seq3
+  => transformation de [T][S]seq1[S]seq1[] en [T][S]seq1[X]seq1
+- Référencement @/seq3
+  => apparition [T][X]seq3[C]case1 et [T][X]seq3[C]case2
+
+
+=====================
+= Test Tree Edition =
+=====================
+
+----- DESCRIPTION
+ADD
+Référencement d'un nouveau noeud:
+- Si le noeud sélectionné est une séquence: ajout à la fin de la séquence.
+- Si le noeud sélectionné est un Test Case: insertion juste après le noeud sélectionné.
+Si le noeud existait physiquement avant son noveau référencement
+(cas possible s'il a été créé manuellement ou s'il a subit un UNREF), il apparait
+directement sous son type [S] ou [C]. Sinon, il apparait comme noeud inexistant [X].
+
+REMOVE
+Suppression du noeud sélectionné.
+- Noeud inexistant
+  => Déréférencement
+- Test Case
+  => Après confirmation, déréférencement et suppression du fichier .pm/.wiz.
+- Sequence
+  => Après confirmation, déréférencement, suppression du répertoire et du
+  fichier .tree (déplacement vers ~/.Trash/TestFarm),*
+  puis 2 options sont demandées par boite de dialogue:
+  [1] Déplacer (option par défaut car moins "dangereuse"):
+      Déplacer le contenu dans la séquence mère au meme endroit que
+      la sequence supprimée.
+  [2] Supprimer:
+      Supprimer tout le contenu de la séquence, de façon récursive.
+
+UP
+Déplacement du noeud vers le haut, au meme niveau
+Cette opération doit etre désactivée si le noeud sélectionné est le
+premier dans son niveau.
+
+DOWN
+Déplacement du noeud vers le bas, au meme niveau
+Cette opération doit etre désactivée si le noeud sélectionné est le
+dernier dans son niveau.
+
+PARENT
+Déplacement du noeud dans la séquence mère, juste avant la séquence courante
+Cette opération doit etre désactivée si le noeud sélectionné est directement
+sous la séquence racine.
+Si un noeud ayant le meme identifiant est référencé dans la séquence mère,
+le noeud déplacé est renomé avec un suffixe numérique pour éviter un conflit.
+
+CHILD
+Déplacement du noeud au début de la première séquence fille située au meme niveau,
+si elle existe.
+Cette opération doit etre désactivée s'il n'y a pas de séquence au meme
+niveau et à la suite du noeud sélectionné.
+Si un noeud ayant le meme identifiant est référencé dans la séquence mère,
+le noeud déplacé est renomé avec un suffixe numérique pour éviter un conflit.
+Note: tester le cas où le noeud est déplacé vers une séquence vide.
+
+
+========================
+= Test Node Properties =
+========================
+
+Un noeud peut etre activé/désactivé par une case à cocher dans la zone "Properties".
+Sa désactivation se traduit par le préfixage par #~ de l'élément dans le fichier .tree
+qui le référence.
+
+Le contenu d'un noeud est visualisé dans une zone à droite de l'arbre.
+Les éléments suivants sont présents:
+
+ID
+Identifiant du noeud dans le fichier branche.
+Editable si type autre que Tree.
+
+TYPE
+Type de noeud : Unknown, Tree, Sequence, Test Case (.pm), Test Case (.wiz)
+Editable uniquement si type Unknown.
+
+DECRIPTION
+Attribut #$DECRIPTION du noeud.
+Editable.
+
+REFERENCE
+Attribut #$REFERENCE du noeud.
+Editable.
+
+CRITICITY
+Attribut #$CRITICITY du noeud.
+Visible et Editable uniquement si type Test Case.
+
+SYSTEM
+Attribut #$SYSTEM du noeud.
+Visible et Editable uniquement si type Sequence racine.
+
+
+===========
+= Wizdefs =
+===========
+
+Liste des .wizdef disponibles dans l'espace de travail.
+Pour chaque step sélectionné, affichage de la documentation (générée automatiquement).
+et bouton d'insertion vers éditeur de texte.
+
+
+===============
+= Compilation =
+===============
+
+Génération du Makefile si absent.
+Lancement de la compilation.
+Affichage des messages d'erreur, avec localisation dans éditeur de texte
+vers les .wiz et/ou .wizdef.
+
+
+==================================
+= Génération des configs système =
+==================================
+
+- Edition d'un fichier XML
+- Compilation avec twiz-conf

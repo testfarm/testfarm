@@ -1,0 +1,10 @@
+<table cols="2" width="100%">
+  <tr>
+    <td>
+      <div style="color:#000099;" align="left"><h1>Test Report</h1></div>
+    </td>
+    <td>
+      <div align="right"><h1><b>TestFarm</b></h1></div>
+    </td>
+  </tr>
+</table>

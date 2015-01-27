@@ -15,8 +15,6 @@ include ../../tools/defs.mk
 
 ifdef GLIB
 CPPFLAGS += -DENABLE_GLIB
-CFLAGS  += $(shell pkg-config --cflags $(GLIB))
-LDFLAGS += $(shell pkg-config --libs $(GLIB))
 endif
 
 ##### TARGETS

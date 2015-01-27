@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/xml">
+    <comment>XSLT stylesheet</comment>
+    <glob pattern="*.xslt" />
+    <glob pattern="*.xsl" />
+  </mime-type>
+  <mime-type type="application/x-perl">
+    <comment>TestFarm Perl macro</comment>
+    <glob pattern="*.wizdef"/>
+  </mime-type>
+</mime-info>

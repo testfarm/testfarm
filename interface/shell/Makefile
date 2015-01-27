@@ -7,6 +7,7 @@
 ##
 
 GLIB = glib-2.0
+
 #ENABLE_CMD_ALIAS = 1
 ENABLE_CMD_HISTORY = 1
 ENABLE_CMD_SOURCE = 1
@@ -18,10 +19,7 @@ include ../../tools/defs.mk
 
 
 ##### OPTIONS
-ifdef GLIB
-CFLAGS  += $(shell pkg-config --cflags $(GLIB))
-LDFLAGS += $(shell pkg-config --libs $(GLIB))
-else
+ifndef GLIB
 # Command history requires GLib,
 # so we disable it when Glib is not enabled
 ENABLE_CMD_HISTORY=

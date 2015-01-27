@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="/opt/testfarm/lib/config.xsl"?>
+<!DOCTYPE CONFIG SYSTEM "/opt/testfarm/lib/config.dtd">
+
+<!-- $Revision: 1087 $ -->
+<!-- $Date: 2009-10-30 14:59:45 +0100 (ven., 30 oct. 2009) $ -->
+
+<CONFIG>
+  <DESCRIPTION>
+    TestFarm System Configuration for Input Flood testings
+  </DESCRIPTION>
+  <INFO id="Revision">
+    $Revision: 1087 $
+  </INFO>
+  <INTERFACE id="PERIODIC1" type="PeriodicSend">
+    <INFO id="version" />
+    <FEATURE id="PeriodicMessage1">
+      <DESCRIPTION>First periodic message source</DESCRIPTION>
+      <START>
+        return 0;
+      </START>
+    </FEATURE>
+  </INTERFACE>
+  <INTERFACE id="PERIODIC2" type="PeriodicSend">
+    <INFO id="version" />
+    <FEATURE id="PeriodicMessage2">
+      <DESCRIPTION>Second periodic message source</DESCRIPTION>
+      <START>
+        return 0;
+      </START>
+    </FEATURE>
+  </INTERFACE>
+  <INTERFACE id="PERIODIC3" type="PeriodicSend">
+    <INFO id="version" />
+    <FEATURE id="PeriodicMessage3">
+      <DESCRIPTION>Third periodic message source</DESCRIPTION>
+      <START>
+        return 0;
+      </START>
+    </FEATURE>
+  </INTERFACE>
+</CONFIG>
