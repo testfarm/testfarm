@@ -15,12 +15,17 @@ RANLIB = $(CROSS_COMPILE)ranlib
 #
 # Directories
 #
+ARCH ?= $(shell arch)
+
 ROOT_DIR = $(shell git rev-parse --show-cdup 2>/dev/null)
 ROOT_DIR ?= .
 TOOLS_DIR = $(ROOT_DIR)/tools
+STAGING_DIR = $(ROOT_DIR)/tmp
 
-DESTDIR = /opt/testfarm
-INSTALLDIR = $(ROOT_DIR)/tmp/opt/testfarm
+PKGDIR = $(STAGING_DIR)/$(PKGNAME)/$(ARCH)
+DESTDIR = $(PKGDIR)/root
+INSTALLROOT = $(DESTDIR)
+INSTALLDIR = $(DESTDIR)/opt/testfarm
 
 #
 # Version numbers
@@ -54,7 +59,6 @@ endif
 #
 # Compile flags
 #
-ARCH ?= $(shell arch)
 CFLAGS = -Wall -DVERSION=\"$(SRCVERSION)\"
 LDFLAGS =
 
@@ -71,7 +75,13 @@ endif
 #
 # Compile rules
 #
-all: $(LIBS) $(BINS)
+.PHONY: check libs bins install
+
+all: check libs bins
+
+libs:: $(LIBS)
+
+bins:: $(BINS)
 
 %.o: %.c
 	$(CC) -o $@ $< -c $(CFLAGS)
@@ -86,10 +96,17 @@ $(BINS):
 clean::
 	$(RM) $(BINS) $(LIBS) *.o *~
 
-.PHONY: install
 install: $(INSTALLDIR)
+
+install_bin: $(BINS)
+	$(MKDIR) $(INSTALLDIR)/bin
+	$(CP) $^ $(INSTALLDIR)/bin/
+
 $(INSTALLDIR):
 	$(MKDIR) $(INSTALLDIR)
 
-distclean: clean
-	$(RM) $(INSTALLDIR)
+mrproper:: clean
+	$(RM) $(STAGING_DIR)
+
+include $(TOOLS_DIR)/check.mk
+include $(TOOLS_DIR)/pkg.mk

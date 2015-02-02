@@ -45,7 +45,6 @@ install_profile: testfarm.sh testfarm.csh
 	@$(MKDIR) $(PROFILEDIR)
 	@$(CP) -v $^ $(PROFILEDIR)
 
-.PHONY: install
 install: install_mime install_desktop install_profile
 
 -include .deps

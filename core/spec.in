@@ -1,0 +1,35 @@
+Name: @NAME@
+Version: @VERSION@
+Release: @RELEASE@
+License: GPL
+Summary: TestFarm Automated Testing Platform
+Group: TestFarm
+Packager: TestFarm.org
+URL: http://www.testfarm.org
+Requires: perl(SGI::FAM) perl(Devel::ptkdb) perl(XML::LibXML)
+
+%description
+TestFarm is a complete platform for building a heterogeneous
+Automated Testing System for embedded real-time software.
+
+%pre
+groupadd -f testfarm 2>/dev/null
+
+%post
+update-mime-database /usr/share/mime >/dev/null
+
+ln -sf /opt/testfarm/icons/testfarm.png /usr/share/pixmaps
+ln -sf /opt/testfarm/lib/TestFarm /usr/lib/perl5/vendor_perl
+
+function createdir {
+  test -d $1 && return
+  echo Creating directory $1
+  mkdir $1 2>/dev/null && chgrp testfarm $1 && chmod $2 $1
+}
+createdir /var/testfarm 0755
+createdir /var/testfarm/lib 0775
+createdir /var/testfarm/license 0750
+
+%files
+%defattr(-,root,testfarm,-)
+/
