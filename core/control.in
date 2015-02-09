@@ -4,5 +4,5 @@ Version: @VERSION@
 Architecture: @ARCH@
 Maintainer: Goobie <http://www.goobie.fr>
 Section: bictab/app
-Depends: libgtk2.0-0, libpoppler-glib5, libwww-perl, libwww-curl-perl (>= 4.15-1)
-Description: BIC Tab paintable PDF/PNG viewer
+Depends: libgtk2.0-0, libxml2, libpcre3, libssl, libgamin
+Description: TestFarm Automated Testing Platform
