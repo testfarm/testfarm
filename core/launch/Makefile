@@ -5,15 +5,13 @@
 ## Creation: 07-JUN-2004
 ##
 
+
+CHECK_PACKAGES_deb += libgtk2-perl libxml-dom-perl libgtk2-gladexml-perl
+CHECK_PACKAGES_rpm +=
+
 include ../../tools/defs.mk
 
 PASTE = ../perl/paste.pl
-
-##### OPTIONS
-LDFLAGS += -lcrypto -Xlinker -s -llicense -linstall
-
-CFLAGS  += $(shell pkg-config --cflags $(GTK))
-LDFLAGS += $(shell pkg-config --libs $(GTK))
 
 ##### TARGETS
 PERLBINS = testfarm-launch

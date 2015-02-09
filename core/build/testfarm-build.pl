@@ -7,9 +7,6 @@
 ## Author: Sylvain Giroudon
 ## Creation: 30-AUG-2005
 ##
-## $Revision: 1134 $
-## $Date: 2010-04-06 10:02:28 +0200 (mar., 06 avril 2010) $
-##
 
 use File::Basename;
 use FileHandle;
@@ -20,7 +17,14 @@ use XML::DOM;
 use Gtk2;
 use Gtk2::GladeXML;
 
+BEGIN {
+    $BIN_DIR = dirname($0);
+    $BIN_DIR = getcwd() if ($BIN_DIR eq '.');
+    $APP_DIR = dirname($BIN_DIR);
+}
+
 use TestFarm::Env;
+use TestFarm::Version;
 use TestFarm::FAM;
 use TestFarm::Dialog;
 use TestFarm::Config;
@@ -45,9 +49,7 @@ my $verbose = 0;
 my $tree_spec = undef;
 
 sub usage {
-  my $rev = '$Revision: 1134 $ ';
-  $rev =~ /^\$Revision: (\S+)/;
-  print STDERR "TestFarm Test Suite Builder - version $1\n" if defined $1;
+  print STDERR "TestFarm Test Suite Builder - version $VERSION\n" if defined $VERSION;
   print STDERR "Usage: $banner [-v] [-v] [<tree-file-or-dir>]\n";
   exit(1);
 }
@@ -149,11 +151,13 @@ sub glade_interface {
 sub find_pixmap {
   my $file = shift;
 
-  my $pixfile = getcwd().'/'.$file;
+  my $pixfile = $APP_DIR.'/icons/'.$file;
   return $pixfile if ( -f $pixfile );
 
   $pixfile = $home_dir.'/icons/'.$file;
   return $pixfile if ( -f $pixfile );
+
+  print STDERR "WARNING: Cannot find image '$file'\n";
 
   return undef;
 }

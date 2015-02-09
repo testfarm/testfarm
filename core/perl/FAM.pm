@@ -1,17 +1,16 @@
 ##
 ## TestFarm
 ## FAM (File Alteration Monitor) Library
-## (C) Basil Dev 2006
 ##
-## $Revision: 371 $
-## $Date: 2007-02-26 18:58:01 +0100 (lun., 26 févr. 2007) $
+## (C) Basil Dev 2006
+## (C) TestFarm.org 2015
 ##
 
 package TestFarm::FAM;
 #use strict;
 
 use File::Basename;
-use SGI::FAM;
+use Sys::Gamin;
 
 require Exporter;
 @ISA = qw(Exporter);
@@ -56,7 +55,7 @@ sub fam_verbose(;$) {
 
 
 sub fam_init {
-  $FAM = eval('new SGI::FAM');
+  $FAM = eval('new Sys::Gamin');
   if ( $@ ) {
     chomp(my $message = $@);
     $message =~ s/\s+at .+ line 1$//;

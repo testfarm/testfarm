@@ -3,9 +3,6 @@
 ##
 ## TestFarm - Manual User Interface - GladeXML engine
 ##
-## $Revision: 250 $
-## $Date: 2006-10-03 16:27:18 +0200 (mar., 03 oct. 2006) $
-##
 
 use File::Basename;
 use IO::Handle;
@@ -13,6 +10,7 @@ use POSIX ":sys_wait_h";
 use Cwd;
 
 use TestFarm::Env;
+use TestFarm::Version;
 
 my $banner = 'testfarm-manual-interface';
 
@@ -36,9 +34,7 @@ my $verbose = 0;
 my $ctl = undef;
 
 sub usage {
-  my $rev = '$Revision: 250 $ ';
-  $rev =~ /^\$Revision: (\S+)/;
-  print STDERR "TestFarm Manual User Interface (GladeXML engine) - version $1\n" if defined $1;
+  print STDERR "TestFarm Manual User Interface (GladeXML engine) - version $VERSION\n" if defined $VERSION;
   print STDERR "Usage: $banner [-v] [-c<fd>] <glade-file>\n";
   exit(1);
 }
