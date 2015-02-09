@@ -1,0 +1,10 @@
+#$DESCRIPTION Image found
+#$CRITICITY MAJOR
+
+## Created: Thu Oct 25 15:30:41 2007
+## $Revision: 860 $
+## $Date: 2007-12-14 17:42:24 +0100 (ven., 14 déc. 2007) $
+
+DISPLAYED +100+0    RED1
+DISPLAYED +200+200  GREEN2
+DISPLAYED +600+400  BLUE6

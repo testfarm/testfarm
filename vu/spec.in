@@ -1,0 +1,21 @@
+Name: @NAME@
+Version: @VERSION@
+Release: @RELEASE@
+License: GPL
+Summary: TestFarm Virtual User
+Group: TestFarm
+Packager: TestFarm.org
+Requires: gocr-srv tesseract-srv ocrad-srv
+
+%description
+TestFarm Virtual User is a testing tool for Graphical Content analysis
+and verification. 
+It controls and analyses the Graphical User Interface of a remote computer.
+TestFarm Virtual User can act as a VNC (Virtual Network Computing) client
+that connects to a standard VNC server running in the remote computer.
+It can also operate using a V4L (Video For Linux) compatible video equipment
+such as a camera or a VGA/DVI frame grabber.
+
+%files
+%defattr(-,root,root,-)
+/

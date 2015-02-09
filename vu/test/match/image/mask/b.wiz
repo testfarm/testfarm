@@ -1,0 +1,9 @@
+#$DESCRIPTION Differences not masked, image not found
+#$CRITICITY MAJOR
+
+## Created: Fri Dec 14 17:40:33 2007
+## $Revision: 865 $
+## $Date: 2007-12-17 14:58:22 +0100 (lun., 17 déc. 2007) $
+
+DISPLAYED NOWHERE FM_CURSOR1 mask=objects/FM_CURSOR1-bad-mask.ppm.gz
+DISPLAYED NOWHERE FM_CURSOR2 mask=objects/FM_CURSOR2-bad-mask.ppm.gz

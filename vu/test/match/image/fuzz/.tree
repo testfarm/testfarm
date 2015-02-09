@@ -1,0 +1,11 @@
+#$DESCRIPTION Image patterns: color fuzzing
+
+## Created: Thu Oct 25 15:11:12 2007
+## $Revision$
+## $Date$
+
+init
+R
+G
+B
+RGB

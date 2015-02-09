@@ -1,0 +1,57 @@
+# -*- perl -*-
+
+#$DESCRIPTION Spot an object on the active frame
+
+#        Name      Values            Description
+#        --------  ----------------  --------------------------------------
+#$PARAM  object    %s                Object id
+#$PARAM  [options] -,%s              Object pattern options
+
+{
+  my $found = 0;
+  my $source = '';
+
+  my $options = Images::RetrieveOptions(<object>);
+  if ( defined $options ) {
+    $source .= $options;
+    $found ||= ( $options =~ /text=/ );
+    $found ||= ( $options =~ /image=/ );
+  }
+  else {
+    $verdict = INCONCLUSIVE;
+  }
+
+ if ( ! $found ) {
+   my $image = Images::RetrieveImage(<object>);
+   if ( $image ) {
+     $source .= 'image='.$image.' ';
+     $found ||= 1;
+   }
+ }
+
+  my $mask = Images::RetrieveMask(<object>);
+  if ( $mask ) {
+    $source .= 'mask='.$mask.' ';
+  }
+
+#$IF '<options>' ne '-'
+  $source .= "<options> ";
+#$ENDIF
+
+  if ( ! $found ) {
+    $verdict = INCONCLUSIVE;
+  }
+
+  if ( $verdict == PASSED ) {
+    my $object = uc("<object>");
+    my $regex = 'MATCH\s+'.$object.'\s+APPEAR\s*';
+    $TRIG_OBJECT = TrigDef($VISU, $object, $regex);
+    push @OBJECT_TRIGGERS, $TRIG_OBJECT;
+
+    unless( $VISU->command("match add $TRIG_OBJECT $source", 'MATCH\s+'.$TRIG_OBJECT.' frame=', '1s') ) {
+      $verdict = INCONCLUSIVE;
+      print "IN_VERDICT Failed to define pattern $TRIG_OBJECT\n";
+      TrigUndef($TRIG_OBJECT);
+    }
+  }
+}

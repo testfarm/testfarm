@@ -1,0 +1,14 @@
+# -*- perl -*-
+
+package <__packname__>;
+
+use TestFarm::Exec;
+use TestFarm::Trig;
+use TVUtest;
+use Images;
+
+sub TEST {
+  $verdict = PASSED;
+  $criticity = 0;
+
+  %OBJECT_TRIGGERS = ();

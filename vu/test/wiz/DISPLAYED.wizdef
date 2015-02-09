@@ -1,0 +1,60 @@
+# -*- perl -*-
+
+#$DESCRIPTION Implements the DISPLAYED function call
+
+#        Name       Values         Description
+#        --------   -------------  --------------------------------------
+#$PARAM  where      ANYWHERE,%s    Expected object position
+#$PARAM  object     %s             Object id
+#$PARAM  [options]   -,%s          Object pattern options
+
+
+$WIDTH = $HEIGHT = $X = $Y = undef;
+
+#$WIZCALL TRIG_OBJECT <object> <options>
+
+if ( $verdict == PASSED ) {
+  $FOUND = TrigWaitInfo($TRIG_OBJECT, '1s');
+  if ( $FOUND ) {
+    $FOUND =~ /@(\d+)x(\d+)\+(\d+)\+(\d+)/;
+    $WIDTH = $1;
+    $HEIGHT = $2;
+    $X = $3;
+    $Y = $4;
+
+    my $where = '<where>';
+    $RESULT = "<object> found at +$X+$Y";
+#$IF '<where>' eq 'NOWHERE'
+    print "IN_VERDICT $RESULT\n";
+    $verdict = FAILED;
+#$ELSE
+#$IF '<where>' ne 'ANYWHERE'
+    if ( $where =~ /\+(\d+)\+(\d+)/ ) {
+      if ( ($X != $1) || ($Y != $2) ) {
+	print "IN_VERDICT $RESULT, not at $where\n";
+	$verdict = FAILED;
+      }
+    }
+    else {
+      print "IN_VERDICT $RESULT, badly formatted position\n";
+      $verdict = INCONCLUSIVE;
+    }
+#$ENDIF
+    if ( $verdict == PASSED ) {
+      print "$RESULT\n";
+    }
+#$ENDIF
+  }
+  else {
+    $RESULT = "<object> not found";
+#$IF '<where>' ne 'NOWHERE'
+    print "IN_VERDICT $RESULT\n";
+    $verdict = FAILED;
+#$ELSE
+    print "$RESULT\n";
+#$ENDIF
+  }
+
+#$WIZCALL TRIG_OBJECT_CLEAR <object>
+  $VISU->sync();
+}

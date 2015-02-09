@@ -1,0 +1,8 @@
+#$DESCRIPTION G in range, RB exact
+#$CRITICITY MAJOR
+
+## Created: Mon Nov  5 20:45:34 2007
+## $Revision: 860 $
+## $Date: 2007-12-14 17:42:24 +0100 (ven., 14 déc. 2007) $
+
+DISPLAYED +300+200 GREEN34 fuzz=#001000

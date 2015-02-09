@@ -1,0 +1,10 @@
+#$DESCRIPTION Image matches
+#$CRITICITY MAJOR
+
+## Created: Fri Oct 26 16:29:19 2007
+## $Revision: 860 $
+## $Date: 2007-12-14 17:42:24 +0100 (ven., 14 déc. 2007) $
+
+DISPLAYED +100+0    RED1   window=200x200+0+0
+DISPLAYED +200+200  GREEN2 window=400x400+100+100
+DISPLAYED +600+400  BLUE6  window=800x100+0+400

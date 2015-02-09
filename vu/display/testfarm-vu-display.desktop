@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=TestFarm Virtual User Display
+Comment= TestFarm Virtual User Graphical front-end
+Exec=testfarm-vu-display
+Icon=testfarm.png
+Terminal=false
+Type=Application
+Categories=Application;Development;

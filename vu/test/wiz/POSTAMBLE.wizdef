@@ -1,0 +1,8 @@
+# -*- perl -*-
+
+#$WIZCALL TRIG_OBJECT_CLEAR
+
+  return ($verdict, $criticity);
+}
+
+1; # Because it is a package...

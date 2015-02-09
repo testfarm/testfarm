@@ -1,0 +1,8 @@
+#$DESCRIPTION Image differs outside window
+#$CRITICITY MAJOR
+
+## Created: Fri Oct 26 16:27:54 2007
+## $Revision: 860 $
+## $Date: 2007-12-14 17:42:24 +0100 (ven., 14 déc. 2007) $
+
+DISPLAYED +100+100 YELLOW1_X window=20x20+100+100

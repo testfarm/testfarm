@@ -1,0 +1,8 @@
+#$DESCRIPTION B out of range, RG in range
+#$CRITICITY MAJOR
+
+## Created: Mon Nov 12 14:56:54 2007
+## $Revision: 862 $
+## $Date: 2007-12-14 18:38:19 +0100 (ven., 14 déc. 2007) $
+
+DISPLAYED NOWHERE GRAY34 fuzz=#10100F

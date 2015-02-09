@@ -63,7 +63,7 @@ CFLAGS = -Wall -DVERSION=\"$(SRCVERSION)\"
 LDFLAGS =
 
 ifdef GLIB
-CFLAGS  += $(shell pkg-config --cflags $(GLIB))
+CFLAGS  += $(shell pkg-config --cflags $(GLIB)) -DENABLE_GLIB
 LDFLAGS += $(shell pkg-config --libs $(GLIB))
 endif
 
@@ -86,17 +86,30 @@ bins:: $(BINS)
 %.o: %.c
 	$(CC) -o $@ $< -c $(CFLAGS)
 
+ifdef LIBS
 $(LIBS):
 	$(AR) rv $@ $^
 	$(RANLIB) $@
+endif
 
+ifdef SHARED
+$(SHARED):
+	$(LD) -shared -nostartfiles -o $@ $^
+endif
+
+ifdef BINS
 $(BINS):
 	$(LD) -o $@ $^ $(LDFLAGS)
+endif
 
 clean::
-	$(RM) $(BINS) $(LIBS) *.o *~
+	$(RM) $(BINS) $(LIBS) $(SHARED) *.o *~
 
 install: $(INSTALLDIR)
+
+install_shared: $(SHARED)
+	$(MKDIR) $(INSTALLDIR)/lib
+	$(CP) $^ $(INSTALLDIR)/lib/
 
 install_bin: $(BINS)
 	$(MKDIR) $(INSTALLDIR)/bin

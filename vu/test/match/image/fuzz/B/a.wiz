@@ -1,0 +1,8 @@
+#$DESCRIPTION B in range, RG exact
+#$CRITICITY MAJOR
+
+## Created: Mon Nov  5 22:42:29 2007
+## $Revision: 860 $
+## $Date: 2007-12-14 17:42:24 +0100 (ven., 14 déc. 2007) $
+
+DISPLAYED +300+400 BLUE34 fuzz=#000010

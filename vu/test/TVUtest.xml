@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="/opt/testfarm/lib/config.xsl"?>
+<!DOCTYPE CONFIG SYSTEM "/opt/testfarm/lib/config.dtd">
+
+<!-- $Revision$ -->
+<!-- $Date$ -->
+
+<CONFIG>
+  <DESCRIPTION>
+    TestFarm VU Validation Suite
+  </DESCRIPTION>
+  <INFO id="System Config Version">
+    $Revision$
+  </INFO>
+  <INTERFACE id="VISU" type="TestFarm::VU" addr="-name VISU file://frames/frame.ppm.gz">
+    <INFO id="version" />
+    <START>
+      sleep 1;
+      $I->status();
+      $I->mode('prompt', 'on');
+      return 0;
+    </START>
+    <FEATURE id="Display">
+      <DESCRIPTION>Display Frame</DESCRIPTION>
+      <ACTION id="DisplayFrame" proto="$">
+        my $name = shift;
+        unlink('frames/frame.ppm.gz');
+        my $fname = $name.'.ppm.gz';
+        my $ret = symlink($fname, 'frames/frame.ppm.gz');
+        if ( $ret ) {
+          $I->capture_refresh('now');
+          sleep(1);
+        }
+        else {
+          print STDERR "DisplayFrame: failed to create symlink to $fname: $!\n";
+        }
+        return $ret;
+      </ACTION>
+    </FEATURE>
+  </INTERFACE>
+</CONFIG>
+

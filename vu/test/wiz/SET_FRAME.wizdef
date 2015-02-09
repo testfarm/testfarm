@@ -1,0 +1,11 @@
+# -*- perl -*-
+
+#$DESCRIPTION Select an image file as current displayed frame
+
+#        Name      Values            Description
+#        --------  ----------------  --------------------------------------
+#$PARAM  frame     %s                Name of frame to display
+
+unless ( DisplayFrame('<frame>') ) {
+  $verdict = INCONCLUSIVE;
+}

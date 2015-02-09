@@ -1,0 +1,8 @@
+#$DESCRIPTION Mask smaller than model
+#$CRITICITY MAJOR
+
+## Created: Fri Dec 14 17:40:53 2007
+## $Revision: 865 $
+## $Date: 2007-12-17 14:58:22 +0100 (lun., 17 déc. 2007) $
+
+DISPLAYED ANYWHERE FM_CURSOR2 mask=objects/FM_CURSOR2-small-mask.ppm.gz

@@ -1,0 +1,9 @@
+#$DESCRIPTION Exact RGB match
+#$CRITICITY MAJOR
+
+## Created: Mon Nov 12 14:53:39 2007
+## $Revision: 862 $
+## $Date: 2007-12-14 18:38:19 +0100 (ven., 14 déc. 2007) $
+
+DISPLAYED +0+500   GRAY0
+DISPLAYED +300+500 GRAY3
