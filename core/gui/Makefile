@@ -40,4 +40,7 @@ testfarm-run: $(GLADE_SRCS:%.c=%.o) $(GUI_SRCS:%.c=%.o)
 .PHONY: install
 install: install_bin
 
+clean::
+	$(RM) $(GTK)/*.o
+
 -include .deps
