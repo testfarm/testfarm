@@ -1,9 +1,8 @@
 Package: @NAME@
-Priority: optional
 Version: @VERSION@
 Architecture: @ARCH@
-Maintainer: Goobie <http://www.goobie.fr>
-Section: bictab/app
+Maintainer: TestFarm.org <http://www.testfarm.org>
+Section: testfarm/app
 Depends: libgtk2.0-0, libxml2, libpcre3, libssl, libgamin0,
 	 libgtk2-perl, libsys-gamin-perl, libxml-dom-perl, libgtk2-gladexml-perl
 Description: TestFarm Automated Testing Platform

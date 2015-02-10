@@ -4,7 +4,7 @@
 
 GLIB = glib-2.0
 
-CHECK_PACKAGES_deb += libxml2-dev libpcre3-dev zlib1g-dev libpng12-dev
+CHECK_PACKAGES_deb += libxml2-dev libpcre3-dev zlib1g-dev libpng-dev
 CHECK_PACKAGES_rpm += libxml2-devel pcre-devel zlib-devel libpng-devel
 
 BINS = testfarm-vu testfarm-vu-grab

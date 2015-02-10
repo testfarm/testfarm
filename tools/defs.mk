@@ -111,9 +111,15 @@ install_shared: $(SHARED)
 	$(MKDIR) $(INSTALLDIR)/lib
 	$(CP) $^ $(INSTALLDIR)/lib/
 
+
+ifdef BINS
 install_bin: $(BINS)
 	$(MKDIR) $(INSTALLDIR)/bin
 	$(CP) $^ $(INSTALLDIR)/bin/
+else
+install_bin:
+	@true
+endif
 
 $(INSTALLDIR):
 	$(MKDIR) $(INSTALLDIR)

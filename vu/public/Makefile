@@ -24,6 +24,4 @@ ALLCSRCS = $(LIB_SRCS)
 ##### $(BINS) and $(LIBS) DEPENDENCIES
 libtvu.a: $(LIB_SRCS:%.c=%.o)
 
-install: install_bin
-
 -include .deps
