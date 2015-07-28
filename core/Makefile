@@ -6,13 +6,13 @@ include ../tools/defs.mk
 
 all:
 	for d in $(SUBDIRS); do \
-	  $(MAKE) -C $$d PKGNAME=$(PKGNAME) all; \
+	  $(MAKE) -C $$d PKGNAME=$(PKGNAME) all || exit 1; \
 	done
 
 install:
 	$(RM) $(DESTDIR)
 	for d in $(SUBDIRS); do \
-	  $(MAKE) -C $$d PKGNAME=$(PKGNAME) install; \
+	  $(MAKE) -C $$d PKGNAME=$(PKGNAME) install || exit 1; \
 	done
 
 clean::
