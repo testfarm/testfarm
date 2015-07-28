@@ -6,10 +6,24 @@
 /* Creation: 12-APR-2000                                                    */
 /****************************************************************************/
 
-/*
- * $Revision: 852 $
- * $Date: 2007-12-10 18:27:03 +0100 (lun., 10 déc. 2007) $
- */
+/* 
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include <stdio.h>
 #include <string.h>
@@ -891,12 +905,12 @@ void tree_gui_unload(tree_gui_t *gui)
 
 static void tree_gui_init_treeview(tree_gui_t *gui)
 {
-  GtkTooltips *tooltips;
+  //GtkTooltips *tooltips;
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
 
   /* Get tooltips engine */
-  tooltips = gtk_object_get_data(GTK_OBJECT(gui->window), "tooltips");
+  //tooltips = gtk_object_get_data(GTK_OBJECT(gui->window), "tooltips");
 
   /* Create test tree */
   gui->tree_model = gtk_tree_store_new(TREE_GUI_NCOLS,

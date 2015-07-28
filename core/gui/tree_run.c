@@ -6,10 +6,24 @@
 /* Creation: 12-APR-2000                                                    */
 /****************************************************************************/
 
-/*
- * $Revision: 1003 $
- * $Date: 2008-04-04 17:26:59 +0200 (ven., 04 avril 2008) $
- */
+/* 
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -737,7 +751,6 @@ tree_t *tree_run_load(tree_run_t *tg, char *filename)
 
   if ( tree->errcount == 0 ) {
     char *target_directory;
-    char *script;
 
     /* Build PERL script */
     if ( (opt_target == NULL) || (access(opt_target, W_OK) != 0) ) {
@@ -750,7 +763,7 @@ tree_t *tree_run_load(tree_run_t *tg, char *filename)
       target_directory = strdup(opt_target);
     }
 
-    script = perl_run_script(tg->pg, tree, target_directory);
+    perl_run_script(tg->pg, tree, target_directory);
 
     free(target_directory);
 
