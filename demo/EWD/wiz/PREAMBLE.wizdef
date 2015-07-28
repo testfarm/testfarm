@@ -1,0 +1,18 @@
+# -*- perl -*-
+
+package <__packname__>;
+
+use File::Basename;
+use TestFarm::Trig;
+use EWDsystem;
+use EWDdisplay;
+use Color;
+use Needle;
+use Digits;
+
+sub TEST {
+  $verdict = PASSED;
+  $criticity = 0;
+
+  $OBJECT_WINDOW = undef;
+  %OBJECT_TRIGGERS = ();

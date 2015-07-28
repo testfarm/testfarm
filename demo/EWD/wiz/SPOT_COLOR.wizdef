@@ -1,0 +1,34 @@
+# -*- perl -*-
+
+#$DESCRIPTION Spot a color pad on the currently selected region
+
+#        Name      Values       Description
+#        --------  -----------  -------------------------------------------
+#$PARAM  color     %s           Color name
+#$PARAM  [options] -,%s         Color padding options
+
+{
+  my $id = "COLOR_<color>";
+  my $args = "color=".Color::<color>;
+
+  if ( defined $VISU->{REGION_GEOMETRY} ) {
+    $args .= ' window='.$VISU->{REGION_GEOMETRY};
+  }
+
+#$IF '<options>' ne '-'
+  $args .= " <options>";
+#$ENDIF
+
+  # Set default color fuzz option if none is defined explicitely
+  if ( ($args !~ / fuzz=/) && (defined $INFO{'Color Fuzz'}) ) {
+    $args .= ' fuzz='.$INFO{'Color Fuzz'};
+  }
+
+  $FOUND = $VISU->pad_add($id, $args);
+  $FOUND =~ s/^\d+\s+PAD\s+$id\s+(\S+=\S+\s*)*//;
+  $VISU->pad_remove($id);
+
+  unless ( $FOUND ) {
+    $verdict = FAILED;
+  }
+}

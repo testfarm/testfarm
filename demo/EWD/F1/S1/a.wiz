@@ -1,0 +1,12 @@
+#$DESCRIPTION No Thrust Mode displayed
+#$CRITICITY MAJOR
+
+## Created: Mon Mar 17 18:01:20 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+SELECT_REGION FLAGS
+
+DISPLAY FLAGS=
+NO_COLOR AMBER
+

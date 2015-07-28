@@ -1,0 +1,45 @@
+# -*- perl -*-
+
+#$DESCRIPTION Update EWD display
+
+#        Name      Values               Description
+#        --------  -------------------  -------------------------------------------
+#$PARAM  commands  ...                  Display commands
+
+{
+  my @cmds = split /\s+/, "<commands>";
+  $VISU->echo("DISPLAY @cmds");
+
+  foreach ( @cmds ) {
+    s/^(.+)=//;
+    my $target = $1;
+    my @tab = split /\.\./;
+
+    my $value = $tab[0];
+    $value = '' unless defined $tab[0];
+
+    EWDdisplay::send($target.'='.$value);
+
+    if ( $#tab > 0 ) {
+      for (my $i = 1; $i <= $#tab; $i++) {
+	my $v1 = $tab[$i-1];
+	my $v2 = $tab[$i];
+
+	print "Display $v1..$v2\n";
+
+	my $sign = (($v2 - $v1) > 0) ? +1:-1;
+	my $inc = 0.5 * $sign;
+
+	for (my $v = $v1; (($v - $v2) * $sign) <= 0; $v += $inc) {
+	  select undef, undef, undef, 0.1;
+	  EWDdisplay::send($target.'='.$v);
+	}
+      }
+    }
+    else {
+      print "Display $_\n";
+    }
+  }
+
+  sleep 2;
+}

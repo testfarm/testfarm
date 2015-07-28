@@ -1,0 +1,33 @@
+# -*- perl -*-
+
+#$DESCRIPTION Init needle observer process
+
+#        Name      Values       Description
+#        --------  -----------  -------------------------------------------
+#$PARAM  name      %s           Needle name
+#$PARAM  [mode]    ON,OFF       Needle observer state
+
+{
+  my $name = "<name>";
+  my $needle = $name.'_NEEDLE';
+
+#$IF '<mode>' eq 'ON'
+  EWDdisplay::send("$name=");
+  sleep(1);
+
+  Needle::Setup($name, $VISU->{$needle});
+  sleep(1);
+
+  EWDdisplay::send("$name=0");
+  sleep(2);
+  Needle::Calibrate($name, 0, 0);
+
+  EWDdisplay::send("$name=100");
+  sleep(2);
+  Needle::Calibrate($name, 1, 100);
+
+  Needle::Clear($name);
+#$ELSE
+  Needle::Destroy($name);
+#$ENDIF
+}

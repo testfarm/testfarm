@@ -1,0 +1,37 @@
+# -*- perl -*-
+
+#$DESCRIPTION Stop recording movie and insert it in the test report
+
+if ( defined $GRAB_FILE ) {
+  $VISU->grab('stop');
+
+  my @files = sort glob($GRAB_FILE);
+  if ( @files ) {
+    my $gif = `./mkgif.pl '$GRAB_FILE'`;
+    chomp $gif;
+
+    print "Movie : $GRAB_FILE ($GRAB_GEOMETRY) -> $gif\n";
+
+    $width = '';
+    if ( $GRAB_GEOMETRY =~ /^(\d+)x/ ) {
+      if ( $1 > 200 ) {
+	$width = 'width="200"';
+      }
+    }
+
+    my $basename1 = basename($gif);
+    my $basename2 = basename($files[$#files/2]);
+    print "<a href=\"$basename1\"><img src=\"$basename2\" $width /></a>\n";
+  }
+  else {
+    $verdict = INCONCLUSIVE;
+    print "IN_VERDICT No file recorded\n"
+  }
+}
+else {
+  $verdict = INCONCLUSIVE;
+  print "IN_VERDICT No grab recording is in progress\n"
+}
+
+$GRAB_GEOMETRY = undef;
+$GRAB_FILE = undef;

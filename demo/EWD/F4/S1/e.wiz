@@ -1,0 +1,11 @@
+#$DESCRIPTION PWR1 Digits = 75 (red)
+#$CRITICITY MAJOR
+
+## Created: Thu Mar 20 17:43:20 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+DISPLAY PWR1=75
+
+CHECK_DIGITS 75.0 RED
+

@@ -1,0 +1,21 @@
+# -*- perl -*-
+
+#$DESCRIPTION Select a Region Of Interest
+
+#        Name      Values       Description
+#        --------  -----------  -------------------------------------------
+#$PARAM  region    NONE,%s      Region id
+
+#$IF '<region>' eq 'NONE'
+$VISU->{REGION} = undef;
+$VISU->{REGION_GEOMETRY} = $VISU->{GEOMETRY};
+#$ELSE
+if ( exists $VISU->{"<region>"} ) {
+  $VISU->{REGION} = "<region>";
+  $VISU->{REGION_GEOMETRY} = $VISU->{"<region>"};
+}
+else {
+  print "IN_VERDICT Attempting to select undefined region '<region>'\n";
+  $verdict = INCONCLUSIVE;
+}
+#$ENDIF

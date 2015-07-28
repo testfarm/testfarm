@@ -1,0 +1,10 @@
+# -*- perl -*-
+
+#$DESCRIPTION Clear needle position recording
+
+{
+  my $name = $VISU->{REGION};
+  EWDdisplay::send($name.'=');
+  sleep 1;
+  my $ret = Needle::Clear($name);
+}

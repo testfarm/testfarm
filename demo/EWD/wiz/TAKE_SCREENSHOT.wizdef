@@ -1,0 +1,27 @@
+# -*- perl -*-
+
+# $Revision$
+# $Date$
+
+#$DESCRIPTION Make a screen shot of the selected region and insert it in the test report
+
+$main::SCREENSHOT_COUNT ||= 0;
+$main::SCREENSHOT_COUNT++;
+
+{
+  my $file = 'screenshot'.$main::SCREENSHOT_COUNT;
+  my $path = TestFarm::Engine::ReportDir().'/'.$file;
+#$WIZCALL GRAB $path
+
+  print "Screenshot : $GRAB_FILE ($GRAB_GEOMETRY)\n";
+
+  $width = '';
+  if ( $GRAB_GEOMETRY =~ /^(\d+)x/ ) {
+    if ( $1 > 200 ) {
+      $width = 'width="200"';
+    }
+  }
+
+  my $basename = basename($GRAB_FILE);
+  print "<a href=\"$basename\"><img src=\"$basename\" $width /></a>\n";
+}

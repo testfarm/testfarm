@@ -1,0 +1,19 @@
+# -*- perl -*-
+
+#$DESCRIPTION Clear an object pattern/trigger that was previously defined with TRIG_OBJECT
+
+#        Name      Values            Description
+#        --------  ----------------  --------------------------------------
+#$PARAM  [object]  -,%s              Object id
+
+#$IF '<object>' eq '-'
+foreach ( keys %OBJECT_TRIGGERS ) {
+  $VISU->match_remove($_);
+  TrigUndef($_);
+}
+%OBJECT_TRIGGERS = ();
+#$ELSE
+$VISU->match_remove("<object>");
+TrigUndef("<object>");
+delete $OBJECT_TRIGGERS{<object>};
+#$ENDIF

@@ -1,0 +1,16 @@
+# -*- perl -*-
+
+#$DESCRIPTION Start grab recording for making a movie of the selected region
+
+#        Name      Values     Description
+#        --------  ---------  ---------------------------------------
+#$PARAM  [t]       10,%d       Duration in seconds if animated grab
+
+$main::MOVIE_COUNT ||= 0;
+$main::MOVIE_COUNT++;
+
+{
+  my $file = 'movie'.$main::MOVIE_COUNT;
+  my $path = TestFarm::Engine::ReportDir().'/'.$file;
+#$WIZCALL GRAB $path <t>
+}

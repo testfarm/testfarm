@@ -1,0 +1,60 @@
+# -*- perl -*-
+
+#$DESCRIPTION Check needle current position or min..max range
+
+#        Name   Values                Description
+#        -----  --------------------  -------------------------------------------
+#$PARAM  value  %s                    VALUE or MIN..MAX range to check
+
+{
+  my $name = $VISU->{REGION};
+  my $ret = Needle::Show($name);
+  print "Needle $name: $ret\n";
+
+  if ( $ret =~ /^VALUE=(\S+)\s+MIN=(\S+)\s+MAX=(\S+)/ ) {
+    my $VALUE = $1;
+    my $MIN = $2;
+    my $MAX = $3;
+
+    if ( $VALUE eq '-' ) {  $VALUE = undef }
+    else { $VALUE = sprintf("%.1f", $VALUE) }
+
+    if ( $MIN eq '-' ) { $MIN = undef }
+    else { $MIN = sprintf("%.1f", $MIN) }
+
+    if ( $MAX eq '-' ) { $MAX = undef }
+    else { $MAX = sprintf("%.1f", $MAX) }
+
+    sub check_value {
+      my $id = shift;
+      my $actual = shift;
+      my $expected = shift;
+
+      if ( defined $actual ) {
+	my $diff = abs($expected - $actual);
+	if ( $diff >= 1.0 ) {
+	  print "IN_VERDICT Needle position $id: actual=$actual expected=$expected\n";
+	  $verdict = FAILED;
+	}
+      }
+      else {
+	print "IN_VERDICT Needle is not displayed (yet?)\n";
+	$verdict = FAILED;
+      }
+    }
+
+    my $val1 = "<value>";
+    if ( $val1 =~ s/\.\.(.+)$// ) {
+      my $val2 = $1;
+      check_value('MIN', $MIN, $val1);
+      check_value('MAX', $MAX, $val2);
+    }
+    else {
+      check_value('VALUE', $VALUE, $val1);
+    }
+  }
+  else {
+    print "IN_VERDICT Failed to retrieve needle $name position values\n";
+    $verdict = INCONCLUSIVE;
+  }
+}

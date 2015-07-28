@@ -1,0 +1,11 @@
+#$DESCRIPTION PWR1 Needle at 110 (clamped to 105)
+#$CRITICITY MAJOR
+
+## Created: Tue Mar 18 16:38:23 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+DISPLAY PWR1=110
+
+CHECK_NEEDLE 105
+

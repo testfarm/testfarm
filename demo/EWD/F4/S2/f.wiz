@@ -1,0 +1,11 @@
+#$DESCRIPTION PWR2 Digits = 89.9 (red)
+#$CRITICITY MAJOR
+
+## Created: Thu Mar 20 17:45:19 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+DISPLAY PWR2=89.9
+
+CHECK_DIGITS 89.9 RED
+

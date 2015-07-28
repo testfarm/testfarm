@@ -1,0 +1,69 @@
+# -*- perl -*-
+
+#$DESCRIPTION Check an image is blinking at a given period with 10% accuracy
+
+#        Name      Values     Description
+#        --------  ---------  ------------------------------------------
+#$PARAM  object    %s         Object id
+#$PARAM  period    %s         Expected blink period in milliseconds or seconds
+
+{
+  my $name = $VISU->{REGION};
+  my $box = $VISU->{$name.'_DIGITS'};
+
+  # Get expected blink period in milliseconds
+  my $period = "<period>";
+  $period =~ s/(\D+)$//;
+  $period *= 1000 if ( $1 eq 's');
+
+  # Assume a period accuracy of 10%
+  my $accuracy = $period * 0.1;
+  printf "Expected blink period: %d ms with %d ms accuracy\n", $period, $accuracy;
+
+  # Record object events for 10 seconds
+  $OBJECT_WINDOW = $box;
+#$WIZCALL TRIG_OBJECT <object> appear disappear retrigger
+  sleep 10;
+#$WIZCALL TRIG_OBJECT_CLEAR <object>
+
+  # Get object events from local log file
+  my $logname = TestFarm::Engine::LocalLog();
+  local *LOG;
+  if ( open(LOG, $logname) ) {
+
+    # Check object events periodicity
+    my $t0 = undef;
+    my $count = 0;
+
+    while ( <LOG> ) {
+      # Split log line fields
+      my ($date, $time, $global_ts, $periph, $local_ts, $tag, $object, $event) = split /\s+/;
+
+      # Only retain MATCH <object> APPEAR events from VISU
+      next unless $periph eq 'VISU';
+      next unless $tag eq 'MATCH';
+      next unless $object eq "<object>";
+      next unless $event eq 'APPEAR';
+
+      # First measured period may be wrong: ignore it
+      if ( $count > 1 ) {
+	# Compute actual blink period in milliseconds
+	my $dt = ($local_ts - $t0) / 1000;
+
+	printf "Measured blink period: %d ms\n", $dt;
+	if ( abs($period - $dt) > $accuracy ) {
+	  printf "IN_VERDICT Wrong blink period: %d ms (expecting %d ms)\n", $dt, $period;
+	  $verdict = FAILED;
+	}
+      }
+
+      $t0 = $local_ts;
+      $count++;
+    }
+    close(LOG);
+  }
+  else {
+    print "IN_VERDICT Cannot open log file $logname: $!\n";
+    $verdict = INCONCLUSIVE;
+  }
+}

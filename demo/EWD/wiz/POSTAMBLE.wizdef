@@ -1,0 +1,14 @@
+# -*- perl -*-
+
+#$WIZCALL TRIG_OBJECT_CLEAR
+
+  $OBJECT_WINDOW = undef;
+
+  # Wait a while to get late messages from badly synchronized interfaces
+  sleep 1;
+
+  return ($verdict, $criticity);
+}
+
+1; # Because it is a package...
+

@@ -1,0 +1,40 @@
+# -*- perl -*-
+
+#$DESCRIPTION Init digits observer process
+
+#        Name      Values       Description
+#        --------  -----------  -------------------------------------------
+#$PARAM  name      %s           Indicator name
+#$PARAM  [mode]    ON,OFF       Digit observer state
+
+{
+  my $name = "<name>";
+  my $digits = $name.'_DIGITS';
+
+#$IF '<mode>' eq 'ON'
+  EWDdisplay::send("$name=");
+  sleep(1);
+
+  # Enable Tesseract OCR agent
+  ## $VISU->command('frame ocr (root) gocr -C -.0-9');
+  $VISU->command('frame ocr (root) tesseract');
+
+  # Start digits observer
+  my $box = $VISU->{$digits};
+  if ( $box ) {
+    my %digits1 = (ID => $digits.'1', SOURCE => 'window='.$box.' text=X');
+    unless ( Digits::Setup($name, \%digits1) ) {
+      Digits::Clear($name);
+    }
+    else {
+      print "IN_VERDICT $digits observer process setup failed\n";
+      $verdict = INCONCLUSIVE;
+    }
+
+    sleep(1);
+  }
+#$ELSE
+  Digits::Destroy($name);
+  delete $VISU->{$digits};
+#$ENDIF
+}

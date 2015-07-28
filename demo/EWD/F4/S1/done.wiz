@@ -1,0 +1,10 @@
+#$DESCRIPTION PWR1 Digits observer shutdown
+
+## Created: Fri Mar 21 15:03:00 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+INIT_DIGITS PWR1 OFF
+
+DISPLAY PWR1=0
+

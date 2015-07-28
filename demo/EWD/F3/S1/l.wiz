@@ -1,0 +1,12 @@
+#$DESCRIPTION PWR1 Needle scan 90..105
+#$CRITICITY MAJOR
+
+## Created: Wed Mar 19 16:22:15 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+CLEAR_NEEDLE
+DISPLAY PWR1=95..110..90..110..100
+
+CHECK_NEEDLE 90..105
+

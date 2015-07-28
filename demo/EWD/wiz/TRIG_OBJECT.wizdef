@@ -1,0 +1,45 @@
+# -*- perl -*-
+
+#$DESCRIPTION Define a pattern+trigger for searching an object
+
+#        Name      Values            Description
+#        --------  ----------------  --------------------------------------
+#$PARAM  object    %s                Object id
+#$PARAM  [options] -,...             Object detection options
+
+{
+#$WIZGEN Object::RetrieveOptions <object>
+  my $source = '<__ret__>';
+
+#$WIZGEN Object::RetrieveImage <object>
+
+  my $object = uc("<object>");
+  my $regex = 'MATCH\s+'.$object.'\s+\S*APPEAR\s+';
+  $TRIG_OBJECT = TrigDef($VISU, $object, $regex);
+  push @OBJECT_TRIGGERS, $TRIG_OBJECT;
+
+  if ( $OBJECT_WINDOW ) {
+    $source .= ' window='.$OBJECT_WINDOW;
+  }
+  elsif ( defined $VISU->{REGION_GEOMETRY} ) {
+    $source .= ' window='.$VISU->{REGION_GEOMETRY};
+  }
+
+#$IF '<options>' ne '-'
+  $source .= ' <options>';
+#$ENDIF
+
+  # Set default color fuzz option if none is defined explicitely
+  if ( ($source !~ / fuzz=/) && (defined $INFO{'Color Fuzz'}) ) {
+    $source .= ' fuzz='.$INFO{'Color Fuzz'};
+  }
+
+  # Set default image approx rate if none is defined explicitely
+  if ( ($source !~ / loss=/) && (defined $INFO{'Pixel Loss'}) ) {
+    $source .= ' loss='.$INFO{'Pixel Loss'};
+  }
+
+  $source .= ' <__ret__>';
+
+  $VISU->match_add($TRIG_OBJECT, $source);
+}

@@ -1,0 +1,10 @@
+#$DESCRIPTION PWR2 Digits observer setup
+#$BREAK_IF_FAILED
+
+## Created: Thu Mar 20 16:17:25 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+SELECT_REGION PWR2
+INIT_DIGITS PWR2
+

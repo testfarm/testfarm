@@ -1,0 +1,11 @@
+#$DESCRIPTION PWR2 Needle at -10 (clamped to -5)
+#$CRITICITY MAJOR
+
+## Created: Wed Mar 19 17:57:46 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+DISPLAY PWR2=-10
+
+CHECK_NEEDLE -5
+

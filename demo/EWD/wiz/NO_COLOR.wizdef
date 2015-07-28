@@ -1,0 +1,21 @@
+# -*- perl -*-
+
+#$DESCRIPTION Check a color is not present the currently selected region
+
+#        Name      Values       Description
+#        --------  -----------  -------------------------------------------
+#$PARAM  color     %s           Color name
+
+#$WIZCALL SPOT_COLOR <color>
+
+if ( $FOUND ) {
+  print "IN_VERDICT Color <color> found";
+  if ( defined $VISU->{REGION} ) {
+    print " on region $VISU->{REGION}"
+  }
+  print "\n";
+  $verdict = FAILED;
+}
+else {
+  $verdict = PASSED;
+}

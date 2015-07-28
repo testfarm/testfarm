@@ -1,0 +1,12 @@
+#$DESCRIPTION Right display (PWR2)
+#$CRITICITY MAJOR
+
+## Created: Tue Mar 18 11:41:46 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+SELECT_REGION PWR2
+
+DISPLAY PWR2=
+SPOT_OBJECT NOVALUE
+

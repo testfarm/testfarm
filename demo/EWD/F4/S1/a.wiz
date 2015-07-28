@@ -1,0 +1,11 @@
+#$DESCRIPTION PWR1 Digits = 0 (green)
+#$CRITICITY MAJOR
+
+## Created: Thu Mar 20 16:19:23 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+DISPLAY PWR1=0
+
+CHECK_DIGITS 0.0 GREEN
+

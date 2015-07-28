@@ -1,0 +1,28 @@
+# -*- perl -*-
+
+#$DESCRIPTION Spot an object
+
+#        Name      Values       Description
+#        --------  -----------  -------------------------------------------
+#$PARAM  object    %s           Object id
+#$PARAM  [timeout] 3s,%s        Object apparition timeout
+
+#$WIZCALL TRIG_OBJECT <object>
+
+$FOUND = TrigWaitInfo($TRIG_OBJECT, '<timeout>');
+
+if ( $FOUND ) {
+  $FOUND =~ /@(\d+)x(\d+)\+(\d+)\+(\d+)/;
+  $WIDTH = $1;
+  $HEIGHT = $2;
+  $X = $3;
+  $Y = $4;
+  print "Object <object> found at +$X+$Y\n";
+}
+else {
+  print "IN_VERDICT Object <object> not found\n";
+  $WIDTH = $HEIGHT = $X = $Y = undef;
+  $verdict = FAILED;
+}
+
+#$WIZCALL TRIG_OBJECT_CLEAR $TRIG_OBJECT

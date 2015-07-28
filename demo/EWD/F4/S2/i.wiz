@@ -1,0 +1,12 @@
+#$DESCRIPTION PWR2 Digits = 105 (red, blinking)
+#$CRITICITY MAJOR
+
+## Created: Thu Mar 20 17:45:28 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+DISPLAY PWR2=105
+
+CHECK_DIGITS 105.0
+CHECK_BLINKING DIGITS_105 1s
+

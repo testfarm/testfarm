@@ -1,0 +1,10 @@
+#$DESCRIPTION PWR1 Needle observer setup
+#$BREAK_IF_FAILED
+
+## Created: Tue Mar 18 15:40:51 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+SELECT_REGION PWR1
+INIT_NEEDLE PWR1
+

@@ -1,0 +1,11 @@
+#$DESCRIPTION Check % label in FLAGS region
+#$CRITICITY MAJOR
+
+## Created: Mon Mar 17 18:01:52 2008
+## $Revision: 38 $
+## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
+
+SELECT_REGION FLAGS
+
+SPOT_OBJECT PERCENT
+

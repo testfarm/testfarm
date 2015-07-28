@@ -1,0 +1,36 @@
+# -*- perl -*-
+
+#$DESCRIPTION Grab a region to an image file
+
+#        Name      Values     Description
+#        --------  ---------  ---------------------------------------
+#$PARAM  file      %s         Target image file name
+#$PARAM  [t]       -,%d       Duration in seconds if animated grab
+
+{
+  my $args = '';
+  if ( defined $VISU->{REGION_GEOMETRY} ) {
+    $args .= ' window='.$VISU->{REGION_GEOMETRY};
+  }
+  elsif ( defined $VISU->{GEOMETRY} ) {
+    $args .= ' window='.$VISU->{GEOMETRY};
+  }
+#$IF '<t>' ne '-'
+  $args .= " t=<t>";
+#$ENDIF
+  $args .= " <file>";
+
+  my $info = $VISU->grab($args);
+  if ( $info ) {
+    $info =~ /window=(\S+)\s+/;
+    $GRAB_GEOMETRY = $1;
+    $info =~ s/\S+=\S+\s+//g;
+    $GRAB_FILE = $info;
+  }
+  else {
+    $GRAB_GEOMETRY = undef;
+    $GRAB_FILE = undef;
+    print "IN_VERDICT Failed to grab image file\n";
+    $verdict = INCONCLUSIVE;
+  }
+}

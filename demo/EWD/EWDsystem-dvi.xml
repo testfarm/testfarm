@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="/opt/testfarm/lib/config.xsl"?>
+<!DOCTYPE CONFIG SYSTEM "/opt/testfarm/lib/config.dtd">
+
+<!-- $Revision$ -->
+<!-- $Date$ -->
+
+<CONFIG>
+  <DESCRIPTION>
+    EWD Demo using a DVI Frame Grabber
+  </DESCRIPTION>
+  <INFO id="System Config Version">
+    $Revision$
+  </INFO>
+  <INFO id="Host Addr">
+    192.168.20.102
+  </INFO>
+  <INFO id="Color Fuzz">
+    8
+  </INFO>
+  <INFO id="Pixel Loss">
+    1
+  </INFO>
+  <SERVICE id="EWDdisplay">
+    <START>
+    </START>
+    <STOP>
+    </STOP>
+  </SERVICE>
+  <INTERFACE id="VISU" type="TestFarm::VU" addr="-name VISU-DVI v4l://:1">
+    <START>
+      sleep 1;
+      $I->status();
+      $I->capture_refresh(125);
+      $I->capture_geometry('600x200+5+48');
+      return 0;
+    </START>
+    <FEATURE id="Display">
+      <DESCRIPTION>EWD Display Window</DESCRIPTION>
+      <START>
+    	use EWDdisplay;
+    	EWDdisplay::init($INFO{'Host Addr'});
+      </START>
+    </FEATURE>
+  </INTERFACE>
+</CONFIG>
