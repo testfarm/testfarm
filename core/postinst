@@ -8,7 +8,7 @@ ln -sf /opt/testfarm/lib/TestFarm /usr/lib/perl5/
 function createdir {
   test -d $1 && return
   echo Creating directory $1
-  mkdir $1 2>/dev/null && chgrp testfarm $1 && chmod $2 $1
+  mkdir -m $2 $1 2>/dev/null && chgrp testfarm $1
 }
 createdir /var/testfarm 0755
 createdir /var/testfarm/lib 0775
