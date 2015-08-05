@@ -18,6 +18,9 @@
   <INFO id="Color Fuzz">
     8
   </INFO>
+  <INFO id="Pixel Loss">
+    10
+  </INFO>
   <SERVICE id="EWDdisplay">
     <START>
       system('./EWDstart.pl');

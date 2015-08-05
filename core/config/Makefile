@@ -5,6 +5,7 @@
 
 ##### Platform config
 GTK = gtk+-2.0
+CHECK_PACKAGES_deb += libxml2-dev
 
 LIBS = libinstall.a
 
