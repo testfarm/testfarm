@@ -7,6 +7,22 @@
 ## Author: Sylvain Giroudon
 ## Creation: 01-JUN-2004
 ##
+## This file is part of TestFarm, a set of tools and scripts for
+## building and checking Debian/RedHat packages from Makefiles.
+##
+## TestFarm is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+##
+## TestFarm is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
+##
 
 use File::Basename;
 use IO::Handle;
@@ -1067,7 +1083,7 @@ sub system_scan_dir {
   my $dir = shift;
   my $list = shift;
 
-  print STDERR "Scanning System Configuration Files in $dir\n" if ( $verbose > 0 );
+  print STDERR "Scanning System Configuration Files in '$dir' ...\n" if ( $verbose > 0 );
 
   local *DIR;
   opendir(DIR, $dir);
@@ -1087,6 +1103,8 @@ sub system_scan_dir {
   }
 
   closedir(DIR);
+
+  print STDERR "System Configuration scan completed\n" if ( $verbose > 0 );
 }
 
 
@@ -1139,6 +1157,8 @@ sub system_scan {
 	push @list, $file;
       }
     }
+
+    print STDERR "System Configuration scan completed\n" if ( $verbose > 0 );
   }
 
   foreach my $file ( sort @list ) {
@@ -2589,6 +2609,8 @@ sub queue_batch_scan {
 
     closedir(DIR);
   }
+
+  print STDERR "Batch file scan completed\n" if ( $verbose > 0 );
 
   # Append a Default batch if list is empty
   if ( $row == 0 ) {
