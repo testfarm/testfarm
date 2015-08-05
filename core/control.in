@@ -4,5 +4,5 @@ Architecture: @ARCH@
 Maintainer: TestFarm.org <http://www.testfarm.org>
 Section: testfarm/app
 Depends: libgtk2.0-0, libxml2, libpcre3, libssl1.0.0, libgamin0,
-	 libgtk2-perl, libsys-gamin-perl, libxml-dom-perl, libgtk2-gladexml-perl
+	 libgtk2-perl, libgtk2-gladexml-perl, libsys-gamin-perl, libxml-libxml-perl, libxml-dom-perl
 Description: TestFarm Automated Testing Platform
