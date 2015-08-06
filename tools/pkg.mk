@@ -2,12 +2,16 @@
 ## Linux distribution packages builder
 ##
 
-VERSION ?= "0"
+TOOLS_DIR ?= $(dir $(lastword $(MAKEFILE_LIST)))
+VERSION ?= $(shell $(TOOLS_DIR)/gitversion.sh)
+BUILDDATE ?= $(shell date +%y%m%d)
 
 RPMARCH ?= $(shell arch)
 
 DEBARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEBNAME = $(PKGNAME)_$(VERSION)_$(DEBARCH).deb
+
+MKDIR ?= mkdir -p
 
 ifdef PKGNAME
 check_pkg_vars:

@@ -1,0 +1,8 @@
+Package: @NAME@
+Version: @VERSION@
+Architecture: @ARCH@
+Maintainer: TestFarm.org <http://www.testfarm.org>
+Section: testfarm/app
+Depends: testfarm-core, testfarm-vu,
+	 vnc4server, imagemagick
+Description: Demonstration apps for the TestFarm Automated Testing Platform
