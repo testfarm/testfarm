@@ -18,7 +18,7 @@ WIZDEPS = $(TARGETS:%=Makefile.d/%.wiz.deps)
 
 .DEFAULT:
 	@for i in $(TREEDEPS) $(WIZDEPS); do \
-	  [ -f $$i ] && (cat $$i | xargs ls >&/dev/null || /bin/rm -f $$i) || continue; \
+	  [ -f $$i ] && (cat $$i | xargs ls 2>&1 >/dev/null || /bin/rm -f $$i) || continue; \
 	done
 
 all: checkrev doc $(SYSTEMS) $(TARGETS)
