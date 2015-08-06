@@ -149,11 +149,13 @@ static void viewer_draw(void)
 
 static gboolean viewer_timeout(void)
 {
-  if ( viewer_image == NULL )
-    return FALSE;
+	viewer_timeout_tag = 0;
 
-  viewer_draw();
-  return FALSE;
+	if (viewer_image != NULL) {
+		viewer_draw();
+	}
+
+	return FALSE;
 }
 
 

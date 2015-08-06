@@ -130,6 +130,7 @@ static gboolean display_pad_timeout(display_pad_item_t *item)
   frame_geometry_t prev;
 
   debug(DEBUG_PATTERN, "PAD TIMEOUT %s tag=%u\n", frame_geometry_str(&item->g), item->tag);
+  item->tag = 0;
 
   prev = item->g;
   item->g = frame_geometry_null;
