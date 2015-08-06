@@ -185,6 +185,7 @@ sub draw {
     $cr->move_to(-0.05, 0.31);
 
     my $txt1 = sprintf("%5.1f", $value);
+    $txt1 =~ s/,/./;
     $txt1 =~ s/\.(.+)$//;
     my $txt2 = $1;
 
