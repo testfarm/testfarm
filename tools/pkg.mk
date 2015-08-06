@@ -2,8 +2,9 @@
 ## Linux distribution packages builder
 ##
 
-TOOLS_DIR ?= $(dir $(lastword $(MAKEFILE_LIST)))
-VERSION ?= $(shell $(TOOLS_DIR)/gitversion.sh)
+ifeq ($(VERSION),)
+VERSION ?= $(shell $(dir $(lastword $(MAKEFILE_LIST)))/gitversion.sh)
+endif
 BUILDDATE ?= $(shell date +%y%m%d)
 
 RPMARCH ?= $(shell arch)
@@ -35,7 +36,7 @@ rpm: check check_pkg_vars install
 	find $(DESTDIR) -type f | sed 's|^$(DESTDIR)||' > $(PKGDIR)/BUILD/RPM.files
 	echo "%_topdir $(PWD)/$(PKGDIR)" > $(HOME)/.rpmmacros
 	rpmbuild -bb $(PKGDIR)/RPM.spec --buildroot=$(PWD)/$(DESTDIR) --target $(RPMARCH)
-	$(MV) $(PKGDIR)/RPMS/*/*.rpm $(PKGDIR)
+	$(MV) $(PKGDIR)/RPMS/*/*.rpm $(STAGING_DIR)
 
 deb: check check_pkg_vars install
 	$(MKDIR) $(DESTDIR)/DEBIAN
@@ -46,7 +47,7 @@ deb: check check_pkg_vars install
 	    -e 's/@VERSION@/$(VERSION)/' \
 	    -e 's/@DEPS@/$(PKGDEPS)/' \
 	    control.in > $(DESTDIR)/DEBIAN/control
-	fakeroot dpkg-deb --build $(DESTDIR) $(PKGDIR)/$(DEBNAME)
+	fakeroot dpkg-deb --build $(DESTDIR) $(STAGING_DIR)/$(DEBNAME)
 else
 rpm deb:
 	@echo "Variable PKGNAME not defined"; false

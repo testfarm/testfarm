@@ -6,11 +6,9 @@ RPMARCH = noarch
 SUBDIRS = $(dir $(wildcard */.tree))
 FILES = $(wildcard *.tree *.wiz *.pl *.pm *.xml)
 
-PKGDIR := ../../tmp/demo
-DESTDIR := $(PKGDIR)/root
-INSTALLDIR := $(DESTDIR)/opt/testfarm/demo
+all: deb
 
-include ../../tools/pkg.mk
+include ../../tools/defs.mk
 
 TARBALL = TestFarm-demo-EWD_$(VERSION).tgz
 
@@ -18,12 +16,9 @@ tarball: clean
 	tar cfza $(TARBALL) $(SUBDIRS) $(FILES)
 
 install: tarball
-	mkdir -p $(INSTALLDIR)
-	cp -a $(TARBALL) $(INSTALLDIR)/
+	mkdir -p $(INSTALLDIR)/demo
+	cp -a $(TARBALL) $(INSTALLDIR)/demo/
 
-clean:
+clean::
 	make clean
 	rm -rf $(DESTDIR)
-
-check:
-	@true

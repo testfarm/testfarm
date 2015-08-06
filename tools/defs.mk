@@ -38,9 +38,8 @@ RANLIB = $(CROSS_COMPILE)ranlib
 #
 ARCH ?= $(shell arch)
 
-ROOT_DIR = $(shell git rev-parse --show-cdup 2>/dev/null)
-ROOT_DIR ?= .
-TOOLS_DIR = $(ROOT_DIR)/tools
+TOOLS_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
+ROOT_DIR = $(patsubst %/,%,$(dir $(TOOLS_DIR)))
 STAGING_DIR = $(ROOT_DIR)/tmp
 
 PKGDIR = $(STAGING_DIR)/$(PKGNAME)/$(ARCH)
