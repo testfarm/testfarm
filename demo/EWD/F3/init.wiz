@@ -1,8 +1,0 @@
-#$DESCRIPTION Needle observer setup
-
-## Created: Tue Mar 18 15:40:51 2008
-## $Revision: 38 $
-## $Date: 2008-03-21 16:36:02 +0100 (Fri, 21 Mar 2008) $
-
-INIT_NEEDLE PWR1
-

@@ -3,3 +3,4 @@ Makefile.d
 EWDsystem.pm
 wizdef.*
 report
+F*/**/*.pm
