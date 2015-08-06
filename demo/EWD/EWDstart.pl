@@ -50,7 +50,24 @@ sub stop {
     }
 }
 
+my $option = $ARGV[0] || '';
+my $restart = 1;
+if ($option eq '-k') {
+    $restart = 0;
+}
+else {
+    print STDERR "Usage: $0 [-k]\n\n";
+    print STDERR "(Re)starts the TestFarm EWD demo application in a Xvnc virtual display.\n\n";
+    print STDERR "Available options:\n";
+    print STDERR "  -k : Kill only, do not restart application\n";
+    exit(($option eq '-h') ? 0:1);
+}
+
 stop('EWDdisplay.pl', 'Xvnc');
 
-start('Xvnc server', 'Xvnc', 'Xvnc :1 -localhost -rfbauth passwd -geometry 700x300 &');
-start('EWD display', 'EWDdisplay.pl', 'DISPLAY=:1 ./EWDdisplay.pl &');
+if ($restart) {
+    start('Xvnc server', 'Xvnc', 'Xvnc :1 -localhost -rfbauth passwd -geometry 700x300 &');
+    start('EWD display', 'EWDdisplay.pl', 'DISPLAY=:1 ./EWDdisplay.pl &');
+}
+
+exit(0);
