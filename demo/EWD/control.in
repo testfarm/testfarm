@@ -1,6 +1,7 @@
 Package: @NAME@
 Version: @VERSION@
 Architecture: @ARCH@
+Priority: extra
 Maintainer: TestFarm.org <http://www.testfarm.org>
 Section: testfarm/app
 Depends: testfarm-core, testfarm-vu,
