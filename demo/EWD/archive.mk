@@ -18,6 +18,7 @@ tarball: clean
 install: tarball
 	mkdir -p $(INSTALLDIR)/demo
 	cp -a $(TARBALL) $(INSTALLDIR)/demo/
+	install -m 755 install.sh $(INSTALLDIR)/demo/
 
 clean::
 	-make clean
