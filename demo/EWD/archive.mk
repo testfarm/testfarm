@@ -3,7 +3,7 @@ PKGNAME = testfarm-demo-ewd
 DEBARCH = all
 RPMARCH = noarch
 
-SUBDIRS = $(dir $(wildcard */.tree))
+SUBDIRS = $(dir $(wildcard */.tree)) wiz
 FILES = $(wildcard *.tree *.wiz *.pl *.pm *.xml)
 
 all: deb
@@ -20,5 +20,5 @@ install: tarball
 	cp -a $(TARBALL) $(INSTALLDIR)/demo/
 
 clean::
-	make clean
+	-make clean
 	rm -rf $(DESTDIR)
