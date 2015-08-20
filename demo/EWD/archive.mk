@@ -3,7 +3,7 @@ PKGNAME = testfarm-demo-ewd
 DEBARCH = all
 RPMARCH = noarch
 
-SUBDIRS = $(dir $(wildcard */.tree)) wiz
+SUBDIRS = $(dir $(wildcard */.tree)) wiz objects
 FILES = $(wildcard *.tree *.wiz *.pl *.pm *.xml)
 
 all: deb
