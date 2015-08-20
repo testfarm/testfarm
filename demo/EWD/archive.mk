@@ -4,7 +4,7 @@ DEBARCH = all
 RPMARCH = noarch
 
 SUBDIRS = $(dir $(wildcard */.tree)) wiz objects
-FILES = $(wildcard *.tree *.wiz *.pl *.pm *.xml)
+FILES = $(wildcard *.tree *.wiz *.pl *.pm *.xml) passwd
 
 all: deb
 
