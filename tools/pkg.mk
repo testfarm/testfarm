@@ -17,7 +17,7 @@ MKDIR ?= mkdir -p
 ifdef PKGNAME
 check_pkg_vars:
 ifdef PKGDIR
-	$(MKDIR) $(PKGDIR)
+	$(MKDIR) $(PKGDIR) $(DELIVERY_DIR)
 else
 	@echo "Variable PKGDIR not defined"; false
 endif
@@ -36,7 +36,7 @@ rpm: check check_pkg_vars install
 	find $(DESTDIR) -type f | sed 's|^$(DESTDIR)||' > $(PKGDIR)/BUILD/RPM.files
 	echo "%_topdir $(PWD)/$(PKGDIR)" > $(HOME)/.rpmmacros
 	rpmbuild -bb $(PKGDIR)/RPM.spec --buildroot=$(PWD)/$(DESTDIR) --target $(RPMARCH)
-	$(MV) $(PKGDIR)/RPMS/*/*.rpm $(STAGING_DIR)
+	$(MV) $(PKGDIR)/RPMS/*/*.rpm $(DELIVERY_DIR)/
 
 deb: check check_pkg_vars install
 	$(MKDIR) $(DESTDIR)/DEBIAN
@@ -47,7 +47,7 @@ deb: check check_pkg_vars install
 	    -e 's/@VERSION@/$(VERSION)/' \
 	    -e 's/@DEPS@/$(PKGDEPS)/' \
 	    control.in > $(DESTDIR)/DEBIAN/control
-	fakeroot dpkg-deb --build $(DESTDIR) $(STAGING_DIR)/$(DEBNAME)
+	fakeroot dpkg-deb --build $(DESTDIR) $(DELIVERY_DIR)/$(DEBNAME)
 else
 rpm deb:
 	@echo "Variable PKGNAME not defined"; false

@@ -39,8 +39,9 @@ RANLIB = $(CROSS_COMPILE)ranlib
 ARCH ?= $(shell arch)
 
 TOOLS_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
-ROOT_DIR = $(patsubst %/,%,$(dir $(TOOLS_DIR)))
-STAGING_DIR = $(ROOT_DIR)/tmp
+ROOT_DIR := $(patsubst %/,%,$(dir $(TOOLS_DIR)))
+STAGING_DIR = $(ROOT_DIR)/staging
+DELIVERY_DIR = $(ROOT_DIR)/delivery
 
 PKGDIR = $(STAGING_DIR)/$(PKGNAME)/$(ARCH)
 DESTDIR = $(PKGDIR)/root
