@@ -50,7 +50,8 @@ use TestFarm::Config;
 
 
 my $banner = 'testfarm-launch';
-my $user_home = $ENV{HOME};
+my $home = $ENV{HOME};
+my $user_home = $home;
 my $browser = $ENV{TESTFARM_BROWSER} || 'firefox';
 
 
@@ -91,6 +92,9 @@ for (my $i = 0; $i <= $#ARGV; $i++) {
       $user_home = $arg;
   }
 }
+
+chomp($user_home);
+print STDERR "User directory = '$user_home'\n" if ($verbose > 0);
 
 fam_verbose($verbose);
 
@@ -722,7 +726,7 @@ sub suite_scan {
       $dirname =~ s{/+$}{};
 
       my $workspace = $dirname;
-      $workspace =~ s{^$user_home/*}{};
+      $workspace =~ s{^$home/*}{};
 
       my %suite = (
 	'workspace'   => $workspace,
@@ -1221,11 +1225,13 @@ sub system_select {
   if ( $is_currently_selected ) {
     if ( (defined $system_selected) && ($system_selected eq $system) ) {
       $system_selected = undef;
+      print STDERR "System unselected\n" if ($verbose > 1);
     }
   }
   else {
     if ( (! defined $system_selected) || ($system_selected ne $system) ) {
       $system_selected = $system;
+      print STDERR "System selected: $system\n" if ($verbose > 1);
     }
   }
 
