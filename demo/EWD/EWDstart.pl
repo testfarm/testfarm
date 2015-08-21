@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+use File::Basename;
+
 sub pids {
     my $args = '';
     foreach (@_) {
@@ -50,6 +52,8 @@ sub stop {
     }
 }
 
+my $dir = dirname($0);
+
 my $option = $ARGV[0];
 my $restart = 1;
 
@@ -68,9 +72,27 @@ if ($option) {
 
 stop('EWDdisplay.pl', 'Xvnc');
 
-if ($restart) {
-    start('Xvnc server', 'Xvnc', 'Xvnc :1 -localhost -rfbauth passwd -geometry 700x300 &');
-    start('EWD display', 'EWDdisplay.pl', 'DISPLAY=:1 ./EWDdisplay.pl &');
+exit(0) unless $restart;
+
+my $xauthorityFile = $dir.'/.Xauthority';
+
+unless (-f $xauthorityFile) {
+    my $host = `uname -n`;
+    chomp($host);
+
+    print STDERR "Creating Xauthority file for '$host'\n";
+
+    my $cookie = `/usr/bin/mcookie`;
+    chomp($cookie);
+
+    if (open(my $auth, "|xauth -f $xauthorityFile source -")) {
+	print $auth "add $host:1 . $cookie\n";
+	print $auth "add $host/unix:1 . $cookie\n";
+	close($auth);
+    }
 }
+
+start('Xvnc server', 'Xvnc', "Xvnc :1 -auth '$xauthorityFile' -localhost -rfbauth '$dir/passwd' -geometry 700x300 &");
+start('EWD display', 'EWDdisplay.pl', "XAUTHORITY='$xauthorityFile' DISPLAY=:1 '$dir/EWDdisplay.pl' &");
 
 exit(0);
