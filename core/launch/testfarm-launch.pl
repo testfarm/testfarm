@@ -7,8 +7,9 @@
 ## Author: Sylvain Giroudon
 ## Creation: 01-JUN-2004
 ##
-## This file is part of TestFarm, a set of tools and scripts for
-## building and checking Debian/RedHat packages from Makefiles.
+## This file is part of TestFarm,
+## the Test Automation Tool for Embedded Software.
+## Please visit http://www.testfarm.org.
 ##
 ## TestFarm is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by

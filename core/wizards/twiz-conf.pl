@@ -5,10 +5,25 @@
 ## Test Suite Development Wizards
 ## System Configuration to Test Feature Library converter
 ##
-## (C) Basil Dev 2006
+## Author: Sylvain Giroudon
+## Creation: 21-JUN-2006
 ##
-## $Revision: 1129 $
-## $Date: 2010-03-31 10:42:33 +0200 (mer., 31 mars 2010) $
+## This file is part of TestFarm,
+## the Test Automation Tool for Embedded Software.
+## Please visit http://www.testfarm.org.
+##
+## TestFarm is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+##
+## TestFarm is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
 use File::Basename;

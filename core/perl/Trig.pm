@@ -1,12 +1,23 @@
 ##
 ## TestFarm
-## Test Suite Execution Library
-## Triggers Management
+## Test Suite Execution Library - Triggers Management
 ##
-## (C) Basil Dev 2006
+## This file is part of TestFarm, 
+## the Test Automation Tool for Embedded Software.
+## Please visit http://www.testfarm.org.
 ##
-## $Revision: 191 $
-## $Date: 2006-07-29 16:07:55 +0200 (sam., 29 juil. 2006) $
+## TestFarm is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+##
+## TestFarm is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
 package TestFarm::Trig;
