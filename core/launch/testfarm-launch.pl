@@ -93,7 +93,6 @@ for (my $i = 0; $i <= $#ARGV; $i++) {
   }
 }
 
-chomp($user_home);
 print STDERR "User directory = '$user_home'\n" if ($verbose > 0);
 
 fam_verbose($verbose);
@@ -105,23 +104,22 @@ fam_verbose($verbose);
 
 my $glade_interface_file = 'testfarm-launch.glade2';
 
-my $glade_interface = << '__GLADE_INTERFACE__';
-__GLADE_INTERFACE__
-
 
 sub glade_interface {
   my $root = shift;
 
-  my $g = undef;
-  if ( $glade_interface =~ /^\s*$/ ) {
-    print STDERR "Loading Glade interface from XML file $glade_interface_file\n" if ( $verbose > 0 );
-    $g = Gtk2::GladeXML->new($glade_interface_file, $root);
-  }
-  else {
-    $g = Gtk2::GladeXML->new_from_buffer($glade_interface, $root);
+  my $file = $glade_interface_file;
+  if (! -f $file) {
+      $file = '/opt/testfarm/lib/'.$glade_interface_file;
   }
 
-  return $g;
+  if (! -f $file) {
+      print STDERR "PANIC: Cannot find interface definition file '$file'\n";
+      return undef;
+  }
+
+  print STDERR "Loading interface definition file '$file'\n" if ( $verbose > 0 );
+  return Gtk2::GladeXML->new($file, $root);
 }
 
 

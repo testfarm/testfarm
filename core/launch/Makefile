@@ -11,24 +11,13 @@ CHECK_PACKAGES_rpm +=
 
 include ../../tools/defs.mk
 
-PASTE = ../perl/paste.pl
-
 ##### TARGETS
-PERLBINS = testfarm-launch
-
-all: $(PERLBINS)
-
-clean::
-	$(RM) $(PERLBINS)
-
-testfarm-launch: testfarm-launch.pl testfarm-launch.glade2
-	$(PASTE) '__GLADE_INTERFACE__' $^ > $@
-	chmod +x $@
+all:
+	@true
 
 ##### Installation
-install_perlbins: $(PERLBINS)
-	@$(MKDIR) $(INSTALLDIR)/bin
-	@$(CP) -v $^ $(INSTALLDIR)/bin/
+install:
+	@$(MKDIR) $(INSTALLDIR)/bin $(INSTALLDIR)/lib
+	@$(CP) -v testfarm-launch.pl $(INSTALLDIR)/bin/testfarm-launch
 	@$(CP) -v testfarm-service.pl $(INSTALLDIR)/bin/testfarm-service
-
-install: install_perlbins
+	@$(CP) -v testfarm-launch.glade2 $(INSTALLDIR)/lib/
