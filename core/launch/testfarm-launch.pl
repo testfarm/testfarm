@@ -89,7 +89,8 @@ for (my $i = 0; $i <= $#ARGV; $i++) {
     }
   }
   else {
-      $user_home = $arg;
+      $user_home = `readlink -f '$arg'`;
+      chomp($user_home);
   }
 }
 
