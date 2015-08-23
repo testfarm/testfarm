@@ -673,9 +673,34 @@ static void report_gui_build_clicked(GtkWidget *widget, report_gui_t *rg)
 
 static void report_gui_view(report_gui_t *rg)
 {
+  static int null_stdout = -1;
+  static int null_stderr = -1;
   char *argv[] = {NULL, NULL, NULL};
   char *url;
   int size;
+
+  /* Open /dev/null if not already done */
+  if (null_stdout < 0) {
+	  null_stdout = open("/dev/null", O_WRONLY);
+	  if (null_stdout < 0) {
+		  perror("Cannot open '/dev/null' for stdout redirection");
+	  }
+  }
+
+  if (null_stdout >= 0) {
+	  fprintf(stderr, "Browser stdout redirected to /dev/null (fd=%d)\n", null_stdout);
+  }
+
+  if (null_stderr < 0) {
+	  null_stderr = open("/dev/null", O_WRONLY);
+	  if (null_stderr < 0) {
+		  perror("Cannot open '/dev/null' for stderr redirection");
+	  }
+  }
+
+  if (null_stderr >= 0) {
+	  fprintf(stderr, "Browser stderr redirected to /dev/null (fd=%d)\n", null_stderr);
+  }
 
   /* Build URL */
   size = strlen(rg->report_name) + 6;
@@ -685,10 +710,12 @@ static void report_gui_view(report_gui_t *rg)
   /* Spawn HTML browser */
   argv[0] = get_browser();
   argv[1] = url;
-  //fprintf(stderr, "Start Test Report viewer: %s %s\n", argv[0], argv[1]);
+  fprintf(stderr, "Start Test Report viewer: %s %s\n", argv[0], argv[1]);
 
-  if ( child_spawn(argv, -1, -1, -1, NULL, NULL) == NULL )
-    status_mesg("Cannot execute browser \"%s\"", argv[0]);
+  if (child_spawn(argv, -1 /* stdin */, null_stdout /* stdout */, null_stderr /* stderr */,
+		  (child_handler_t *) NULL, NULL) == NULL) {
+	  status_mesg("Cannot execute browser \"%s\"", argv[0]);
+  }
 
   free(url);
 }
