@@ -1,6 +1,8 @@
 Makefile
 Makefile.d
 EWDsystem.pm
+End.pm
 wizdef.*
 report
 F*/**/*.pm
+.*

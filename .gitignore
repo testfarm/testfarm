@@ -2,4 +2,5 @@
 **/*.o
 **/*.a
 **/*.so
-tmp
+staging
+delivery
