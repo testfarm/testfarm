@@ -494,9 +494,11 @@ sub proc_find_by_cmd {
 
 sub proc_done {
   my $pid = shift || return;
+  my $status = shift;
   my $proc = $procs{$pid} || return;
 
-  console_dump($pid, 'blue', "Process terminated");
+  my $status_str = (defined $status) ? $status : 'UNKNOWN';
+  console_dump($pid, 'blue', "Process terminated (status=$status_str)");
 
   Glib::Source->remove($$proc{stdout_tag}) if ( defined $$proc{stdout_tag} );
   Glib::Source->remove($$proc{stderr_tag}) if ( defined $$proc{stderr_tag} );
@@ -506,7 +508,7 @@ sub proc_done {
   close($$proc{stderr}) if ( defined $$proc{stderr} );
 
   if ( defined $$proc{done_hdl} ) {
-    &{$$proc{done_hdl}}($$proc{done_arg}, $pid);
+    &{$$proc{done_hdl}}($$proc{done_arg}, $pid, $status);
   }
 
   my $iter = $proc_model->get_iter_from_string($$proc{path});
@@ -530,6 +532,16 @@ sub proc_terminate {
     proc_term($pid);
   }
   %procs = ();
+}
+
+
+sub proc_write {
+    my $pid = shift || return;
+    my $proc = $procs{$pid} || return;
+
+    foreach (@_) {
+	$proc->{stdin}->print($_);
+    }
 }
 
 
@@ -917,7 +929,8 @@ sub suite_edit_clicked {
   my $pid = $$suite{pid_edit};
 
   if ( defined $pid ) {
-    #TODO: raise the Test Suite builder
+      # Raise the Test Suite builder
+      system('xdotool search --name "TestFarm Test Suite Builder" windowraise %@');
   }
   else {
     # Start the Test Suite builder
@@ -1031,9 +1044,7 @@ sub suite_stdout {
 
 sub suite_raise {
   my $suite = shift;
-  my $pid = $$suite{pid_exec} || return;
-  my $proc = $procs{$pid} || return;
-  $$proc{stdin}->print("R\n");
+  proc_write($suite->{pid_exec}, "R\n");
 }
 
 
@@ -2093,10 +2104,7 @@ my $report_options_pid = undef;
 
 sub report_options_clicked {
   if ( $report_options_pid ) {
-    my $proc = $procs{$report_options_pid};
-    if ( $proc ) {
-      $$proc{stdin}->print("R\n");
-    }
+      proc_write($report_options_pid, "R\n");
   }
   else {
     $report_options_pid = proc_start('testfarm-config', undef, \&report_options_done);
@@ -3136,10 +3144,11 @@ sub sig_chld {
   while ( 1 ) {
     my $pid = waitpid(-1, WNOHANG);
     last if ( $pid <= 0 );
+    my $status = $?;
     if ( $str ne '' ) {
       $str .= ' ';
     }
-    $str .= $pid;
+    $str .= $pid.':'.$status;
   }
 
   #print STDERR "--- SIGCHLD $str\n";
@@ -3166,8 +3175,9 @@ sub sig_process {
   #print STDERR "--- SIGNAL_RD $str\n";
   my @pids = split /\s+/, $str;
 
-  foreach my $pid ( @pids ) {
-    proc_done($pid);
+  foreach ( @pids ) {
+      my ($pid, $status) = split /:/;
+      proc_done($pid, $status);
   }
 
   return 1;
@@ -3235,7 +3245,6 @@ sub rescan {
 
   $rescan->set_sensitive(1);
 
-  Glib::Source->remove($rescan_tag) if ( defined $rescan_tag );
   $rescan_tag = undef;
 
   print STDERR "Workspace scan completed.\n" if ( $verbose > 0 );
@@ -3244,7 +3253,34 @@ sub rescan {
 
 sub rescan_clicked {
   $rescan->set_sensitive(0);
+  if ($rescan_tag) {
+      Glib::Source->remove($rescan_tag);
+  }
   $rescan_tag = Glib::Idle->add(\&rescan);
+}
+
+
+###########################################################
+# TVU Display Tool
+###########################################################
+
+sub vu_display_raised {
+    my $arg = shift;
+    my $pid = shift;
+    my $status = shift;
+
+    if ($status) {
+	print STDERR "TestFarm Virtual User Display not started. Starting...\n" if ($verbose > 0);
+	proc_start('testfarm-vu-display');
+    }
+    else {
+	print STDERR "TestFarm Virtual User Display already started. Should be raised now.\n" if ($verbose > 0);
+    }
+}
+
+sub vu_display_clicked {
+    print STDERR "Raising TestFarm Virtual User Display...\n" if ($verbose > 0);
+    proc_start('xdotool search --name "TestFarm Virtual User Display" windowraise %@', undef, \&vu_display_raised);
 }
 
 

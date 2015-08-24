@@ -81,6 +81,25 @@
 	      </child>
 
 	      <child>
+		<widget class="GtkToolButton" id="vu_display">
+		  <property name="visible">True</property>
+                  <property name="can_focus">False</property>
+		  <property name="tooltip" translatable="yes">Start TestFarm Virtual User Display Tool</property>
+		  <property name="label" translatable="yes">Display Tool</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_id">gtk-fullscreen</property>
+		  <property name="visible_horizontal">True</property>
+		  <property name="visible_vertical">True</property>
+		  <property name="is_important">False</property>
+		  <signal name="clicked" handler="vu_display_clicked"/>
+		</widget>
+		<packing>
+		  <property name="expand">False</property>
+		  <property name="homogeneous">True</property>
+		</packing>
+	      </child>
+
+	      <child>
 		<widget class="GtkToolButton" id="quit">
 		  <property name="visible">True</property>
 		  <property name="stock_id">gtk-quit</property>
