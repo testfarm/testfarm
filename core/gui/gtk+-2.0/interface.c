@@ -1999,7 +1999,7 @@ create_about_window (void)
   gtk_widget_show (version);
   gtk_box_pack_start (GTK_BOX (vbox31), version, FALSE, FALSE, 0);
 
-  copyright = gtk_label_new (_("Copyright Basil Dev 2006"));
+  copyright = gtk_label_new (_("Copyright TestFarm.org 2006-2015"));
   gtk_widget_show (copyright);
   gtk_box_pack_start (GTK_BOX (vbox31), copyright, FALSE, FALSE, 0);
 
