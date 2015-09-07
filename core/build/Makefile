@@ -27,27 +27,13 @@ CHECK_PACKAGES_rpm +=
 
 include ../../tools/defs.mk
 
-PASTE = ../perl/paste.pl
-
 ##### TARGETS
-PERLBINS = testfarm-build
-SCRIPTS = testfarm-edit.sh
-
-all: $(PERLBINS)
-
-clean::
-	$(RM) $(PERLBINS)
-
-testfarm-build: testfarm-build.pl testfarm-build.glade
-	$(PASTE) '__GLADE_INTERFACE__' $^ > $@
-	chmod +x $@
+all:
+	@true
 
 ##### Installation
-install_scripts: $(SCRIPTS)
-	@$(CP) -v $^ $(INSTALLDIR)/bin/
-
-install_perlbins: $(PERLBINS)
-	@$(MKDIR) $(INSTALLDIR)/bin
-	@$(CP) -v $^ $(INSTALLDIR)/bin/
-
-install: install_scripts install_perlbins
+install:
+	@$(MKDIR) $(INSTALLDIR)/bin $(INSTALLDIR)/lib
+	@$(CP) -v testfarm-edit.sh $(INSTALLDIR)/bin/
+	@$(CP) -v testfarm-build.pl $(INSTALLDIR)/bin/testfarm-build
+	@$(CP) -v testfarm-build.glade $(INSTALLDIR)/lib/

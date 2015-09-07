@@ -56,16 +56,6 @@ my $browser = $ENV{TESTFARM_BROWSER} || 'firefox';
 
 
 ###########################################################
-# Wait for cryptoperl feeder termination (if any)
-###########################################################
-
-if ( defined $__feeder__ ) {
-  #print STDERR "-- $banner: FEEDER $__feeder__\n";
-  waitpid($__feeder__, 0);
-}
-
-
-###########################################################
 # Get & Check arguments
 ###########################################################
 

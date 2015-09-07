@@ -50,15 +50,6 @@ my $banner = 'testfarm-build';
 
 
 ###########################################################
-# Wait for cryptoperl feeder termination (if any)
-###########################################################
-
-if ( defined $__feeder__ ) {
-  waitpid($__feeder__, 0);
-}
-
-
-###########################################################
 # Get & Check arguments
 ###########################################################
 
@@ -145,23 +136,22 @@ sub _PANIC {
 
 my $glade_interface_file = getcwd().'/testfarm-build.glade';
 
-my $glade_interface = << '__GLADE_INTERFACE__';
-__GLADE_INTERFACE__
-
 
 sub glade_interface {
   my $root = shift;
 
-  my $g = undef;
-  if ( $glade_interface =~ /^\s*$/ ) {
-    _VERBOSE(1, "Loading Glade interface from XML file $glade_interface_file\n");
-    $g = Gtk2::GladeXML->new($glade_interface_file, $root);
-  }
-  else {
-    $g = Gtk2::GladeXML->new_from_buffer($glade_interface, $root);
+  my $file = $glade_interface_file;
+  if (! -f $file) {
+      $file = '/opt/testfarm/lib/'.$glade_interface_file;
   }
 
-  return $g;
+  if (! -f $file) {
+      print STDERR "PANIC: Cannot find interface definition file '$file'\n";
+      return undef;
+  }
+
+  print STDERR "Loading interface definition file '$file'\n" if ( $verbose > 0 );
+  return Gtk2::GladeXML->new($file, $root);
 }
 
 

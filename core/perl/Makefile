@@ -28,7 +28,6 @@ CHECK_PACKAGES_rpm +=
 include ../../tools/defs.mk
 
 ##### TARGETS
-HEADERS = cryptoperl.c
 PERLLIBS = Version.pm Dialog.pm FAM.pm Locate.pm Config.pm Service.pm \
 	   Engine.pm Trig.pm Exec.pm Env.pm \
 	   Interface.pm ../../interface/link/InterfaceInput.pm \
