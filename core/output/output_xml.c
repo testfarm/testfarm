@@ -229,7 +229,7 @@ static void output_xml_date(output_xml_t *ox)
   fprintf(ox->file.f, " date=\"%ld%03ld\"", date.tv_sec, date.tv_usec / 1000);
 
   t = date.tv_sec;
-  strftime(str, sizeof(str), "%d-%b-%Y %H:%M:%S", localtime(&t));
+  strftime(str, sizeof(str), "%F %T", localtime(&t));
   fprintf(ox->file.f, " localtime=\"%s\"", str);
 }
 
@@ -357,7 +357,7 @@ int output_xml_open(output_xml_t *ox, output_tree_t *tree)
 
   /* Write XML header */
   ox->indent = 0;
-  fprintf(ox->file.f, "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
+  fprintf(ox->file.f, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
   fprintf(ox->file.f, "<!DOCTYPE OUTPUT SYSTEM \"%s/lib/output.dtd\">\n", home);
   fprintf(ox->file.f, "<?xml-stylesheet type=\"text/xsl\" href=\"%s/lib/output.xsl\"?>\n", home);
   fprintf(ox->file.f, "<RESULT>\n");
