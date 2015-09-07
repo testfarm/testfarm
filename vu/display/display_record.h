@@ -1,5 +1,5 @@
 /****************************************************************************/
-/* TestFarm RFB Interface                                                   */
+/* TestFarm Virtual User                                                    */
 /* RFB Input recording                                                      */
 /****************************************************************************/
 /* Author: Sylvain Giroudon                                                 */
@@ -7,12 +7,26 @@
 /****************************************************************************/
 
 /*
- * $Revision: 793 $
- * $Date: 2007-11-06 22:44:29 +0100 (mar., 06 nov. 2007) $
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __RFB_DISPLAY_RECORD_H__
-#define __RFB_DISPLAY_RECORD_H__
+#ifndef __TVU_DISPLAY_RECORD_H__
+#define __TVU_DISPLAY_RECORD_H__
 
 #include <gtk/gtk.h>
 
@@ -29,4 +43,4 @@ extern void display_record_pointer_button(unsigned int n, int pressed, unsigned 
 extern void display_record_pointer_scroll(unsigned char direction);
 extern void display_record_key(unsigned long keyval, int pressed);
 
-#endif /* __RFB_DISPLAY_RECORD_H__ */
+#endif /* __TVU_DISPLAY_RECORD_H__ */

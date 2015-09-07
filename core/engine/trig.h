@@ -7,12 +7,26 @@
 /****************************************************************************/
 
 /*
- * $Revision: 1088 $
- * $Date: 2009-10-30 15:24:46 +0100 (ven., 30 oct. 2009) $
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __TRIG_H__
-#define __TRIG_H__
+#ifndef __TESTFARM_TRIG_H__
+#define __TESTFARM_TRIG_H__
 
 #include <pcreposix.h>
 
@@ -40,4 +54,4 @@ extern int trig_info(char *id, char **info);
 
 extern trig_t *trig_retrieve(char *id);
 
-#endif /* __TRIG_H__ */
+#endif /* __TESTFARM_TRIG_H__ */

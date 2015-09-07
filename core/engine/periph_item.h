@@ -7,12 +7,26 @@
 /****************************************************************************/
 
 /*
- * $Revision: 639 $
- * $Date: 2007-07-13 22:19:32 +0200 (ven., 13 juil. 2007) $
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __PERIPH_ITEM_H__
-#define __PERIPH_ITEM_H__
+#ifndef __TESTFARM_PERIPH_ITEM_H__
+#define __TESTFARM_PERIPH_ITEM_H__
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -91,4 +105,4 @@ extern char *periph_item_info(periph_item_t *item);
 extern void periph_item_closed_set(periph_item_t *item, periph_item_closed_t *closed, void *closed_arg);
 extern void periph_item_closed_raise(periph_item_t *item);
 
-#endif /* __PERIPH_ITEM_H__ */
+#endif /* __TESTFARM_PERIPH_ITEM_H__ */

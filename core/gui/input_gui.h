@@ -7,12 +7,26 @@
 /****************************************************************************/
 
 /*
- * $Revision: 398 $
- * $Date: 2007-03-07 12:21:06 +0100 (mer., 07 mars 2007) $
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INPUT_GUI_H__
-#define __INPUT_GUI_H__
+#ifndef __TESTFARM_INPUT_GUI_H__
+#define __TESTFARM_INPUT_GUI_H__
 
 #include <gtk/gtk.h>
 
@@ -36,4 +50,4 @@ extern void input_gui_destroy(input_gui_t *ig);
 extern void input_gui_sensitivity(input_gui_t *ig, gboolean active);
 extern void input_gui_wakeup(input_gui_t *ig);
 
-#endif /* __INPUT_GUI_H__ */
+#endif /* __TESTFARM_INPUT_GUI_H__ */

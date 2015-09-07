@@ -6,11 +6,27 @@
 /* Creation: 11-SEP-2003                                                    */
 /****************************************************************************/
 
-/* $Revision: 42 $ */
-/* $Date: 2006-06-03 15:30:01 +0200 (sam., 03 juin 2006) $ */
+/*
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
 
-#ifndef __EXPR_H__
-#define __EXPR_H__
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef __TESTFARM_EXPR_H__
+#define __TESTFARM_EXPR_H__
 
 #include <glib.h>
 
@@ -31,4 +47,4 @@ typedef int expr_eval_hdl_t(expr_item_t *);
 
 extern int expr_eval(GList *list, expr_eval_hdl_t *hdl);
 
-#endif /* __EXPR_H__ */
+#endif /* __TESTFARM_EXPR_H__ */

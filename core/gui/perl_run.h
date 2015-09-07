@@ -7,12 +7,26 @@
 /****************************************************************************/
 
 /*
- * $Revision: 398 $
- * $Date: 2007-03-07 12:21:06 +0100 (mer., 07 mars 2007) $
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __PERL_RUN_H
-#define __PERL_RUN_H
+#ifndef __TESTFARM_PERL_RUN_H
+#define __TESTFARM_PERL_RUN_H
 
 #include "child.h"
 #include "pipe.h"
@@ -64,4 +78,4 @@ extern void perl_run_request_action(perl_run_t *pg, tree_object_t *object, char 
 
 extern void perl_run_output_set(perl_run_t *pg, output_file_func_t *func, void *arg);
 
-#endif /* __PERL_RUN_H */
+#endif /* __TESTFARM_PERL_RUN_H */

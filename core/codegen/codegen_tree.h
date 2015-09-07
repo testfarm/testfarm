@@ -7,12 +7,26 @@
 /****************************************************************************/
 
 /*
- * $Revision: 763 $
- * $Date: 2007-10-01 17:45:56 +0200 (lun., 01 oct. 2007) $
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CODEGEN_TREE_H
-#define __CODEGEN_TREE_H
+#ifndef __TESTFARM_CODEGEN_TREE_H
+#define __TESTFARM_CODEGEN_TREE_H
 
 #include <time.h>
 #include <glib.h>
@@ -203,4 +217,4 @@ extern void tree_simu(tree_t *tree);
 extern tree_object_t *tree_lookup(tree_t *tree, unsigned long key);
 extern tree_object_t *tree_lookup_name(tree_t *tree, char *name);
 
-#endif /* __CODEGEN_TREE_H */
+#endif /* __TESTFARM_CODEGEN_TREE_H */

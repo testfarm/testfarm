@@ -7,12 +7,26 @@
 /****************************************************************************/
 
 /*
- * $Revision: 42 $
- * $Date: 2006-06-03 15:30:01 +0200 (sam., 03 juin 2006) $
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
+
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __PERIPH_H__
-#define __PERIPH_H__
+#ifndef __TESTFARM_PERIPH_H__
+#define __TESTFARM_PERIPH_H__
 
 #include "periph_item.h"
 
@@ -42,4 +56,4 @@ extern periph_item_t *periph_fd_retrieve(periph_t *periph, int fd);
 typedef void periph_info_method_t(char *);
 extern void periph_info(periph_t *periph, char *hdr, periph_info_method_t *method);
 
-#endif /* __PERIPH_H__ */
+#endif /* __TESTFARM_PERIPH_H__ */

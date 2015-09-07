@@ -6,11 +6,27 @@
 /* Creation: 22-JUN-2000                                                    */
 /****************************************************************************/
 
-/* $Revision: 42 $ */
-/* $Date: 2006-06-03 15:30:01 +0200 (sam., 03 juin 2006) $ */
+/*
+    This file is part of TestFarm,
+    the Test Automation Tool for Embedded Software.
+    Please visit http://www.testfarm.org.
 
-#ifndef __CODEGEN_TREE_ERROR_H
-#define __CODEGEN_TREE_ERROR_H
+    TestFarm is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TestFarm is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef __TESTFARM_CODEGEN_TREE_ERROR_H
+#define __TESTFARM_CODEGEN_TREE_ERROR_H
 
 #include "codegen_tree.h"
 
@@ -22,4 +38,4 @@ extern tree_err_t *tree_warning(tree_t *tree, tree_err_loc_t *loc, char *fmt, ..
 extern void tree_error(tree_t *tree, tree_err_loc_t *loc, char *fmt, ...);
 extern void tree_panic(tree_t *tree, tree_err_loc_t *loc, char *fmt, ...);
 
-#endif /* __CODEGEN_TREE_ERROR_H */
+#endif /* __TESTFARM_CODEGEN_TREE_ERROR_H */
