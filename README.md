@@ -6,7 +6,9 @@ that reduces the testing duration and greatly improves the quality of the softwa
 
 # Related links
 The main web site : http://www.testfarm.org
+
 The documentation Wiki : http://www.testfarm.org/doc
+
 Source repositories on GitHub : https://github.com/testfarm
 
 # Licence
