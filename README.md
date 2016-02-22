@@ -11,7 +11,7 @@ The documentation Wiki : http://www.testfarm.org/doc
 
 Source repositories on GitHub : https://github.com/testfarm
 
-# Licence
+# License
 TestFarm is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
