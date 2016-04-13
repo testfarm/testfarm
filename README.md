@@ -23,26 +23,30 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
 
-## Getting source code
+## Building
+### Get source code
 ```console
 $ git clone --recursive https://github.com/testfarm/testfarm.git
+$ cd testfarm
 ```
 
-## Compiling
-### TestFarm Core - The main lib and application
+### Compile
 ```console
-$ make -C testfarm/interface
-$ make -C testfarm/core
-```
-### TestFarm Virtual User - The graphic HMI analysing interface
-```console
-$ make -C vu
+$ make
 ```
 
-## Packaging
-Resulting packages are available in subdirectory *delivery*
+### Generate packages
+Resulting packages are available in subdirectory *delivery*:
+* TestFarm Core - The main lib and application: testfarm-core
+* TestFarm Virtual User - The graphic HMI analysing interface: testfarm-vu
+* OCR Agents: tesseract-srv, ocrad-srv, gocr-srv
+
+Debian/Ubuntu packages:
 ```console
-$ make -C core deb
-$ make -C vu deb
-$ make -C demo/EWD -f archive.mk
+$ make deb
+```
+
+RedHat/Fedora packages:
+```console
+$ make rpm
 ```

@@ -29,5 +29,9 @@ all:
 clean::
 	make -C cosi clean
 
+rpm:
+	make -C cosi rpm DESTDIR=$(abspath $(DESTDIR)) PKGDIR=$(abspath $(PKGDIR))
+	mv -fv $(PKGDIR)/*.rpm $(DELIVERY_DIR)/
+
 deb:
-	make -C cosi deb DESTDIR=$(abspath $(DESTDIR)) PKGDIR=$(abspath $(PKGDIR))
+	make -C cosi deb DESTDIR=$(abspath $(DESTDIR)) PKGDIR=$(abspath $(DELIVERY_DIR))
