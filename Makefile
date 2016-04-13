@@ -17,7 +17,8 @@
 ## GNU General Public License for more details.
 ##
 
-SUBDIRS = interface core vu ocr
+MODULES = core vu ocr
+SUBDIRS = interface $(MODULES)
 
 all:
 	for d in $(SUBDIRS); do \
@@ -25,12 +26,12 @@ all:
 	done
 
 deb:
-	for d in $(SUBDIRS); do \
+	for d in $(MODULES); do \
 	  $(MAKE) -C $$d deb || exit 1; \
 	done
 
 rpm:
-	for d in $(SUBDIRS); do \
+	for d in $(MODULES); do \
 	  $(MAKE) -C $$d rpm || exit 1; \
 	done
 
