@@ -15,25 +15,19 @@
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 ##
-## You should have received a copy of the GNU General Public License
-## along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
-##
 
-include ../../tools/defs.mk
-include ../defs.mk
+CHECK_PACKAGES_deb += quilt lzip help2man libnetpbm10-dev libtiff5-dev libglade2-dev libpng12-dev libreadline-dev libtesseract-dev
+CHECK_PACKAGES_rpm += quilt lzip help2man netpbm-devel libtiff-devel libglade2-devel readline-devel tesseract-devel
 
-##### TARGETS
-LAUNCHERS = gocr.sh tesseract.sh ocrad.sh
-
-OCRLIBDIR = $(USRLIBDIR)/ocr
-MODLIBDIR = $(OCRLIBDIR)
+include ../tools/defs.mk
 
 ##### $(BINS) and $(LIBS) DEPENDENCIES
 all:
-	@echo >/dev/null
+	git submodule update --init
+	make -C cosi all
 
-install_launchers: $(LAUNCHERS)
-	$(MKDIR) $(OCRLIBDIR)
-	$(CP) $^ $(OCRLIBDIR)
+clean::
+	make -C cosi clean
 
-install: install_launchers
+deb:
+	make -C cosi deb DESTDIR=$(abspath $(DESTDIR)) PKGDIR=$(abspath $(PKGDIR))

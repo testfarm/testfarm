@@ -5,5 +5,5 @@ Priority: extra
 Maintainer: TestFarm.org <http://www.testfarm.org>
 Section: testfarm/app
 Depends: libgtk2.0-0, libxml2, libpcre3, zlib1g, libjpeg8, libpng12-0, libv4l-0,
-	 tesseract-srv
+	 tesseract-srv, tesseract-ocr-eng, ocrad-srv, gocr-srv
 Description: TestFarm Virtual User

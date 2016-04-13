@@ -43,7 +43,11 @@ ROOT_DIR := $(patsubst %/,%,$(dir $(TOOLS_DIR)))
 STAGING_DIR = $(ROOT_DIR)/staging
 DELIVERY_DIR = $(ROOT_DIR)/delivery
 
+ifdef PKGNAME
 PKGDIR = $(STAGING_DIR)/$(PKGNAME)/$(ARCH)
+else
+PKGDIR = $(STAGING_DIR)/tmp/$(ARCH)
+endif
 DESTDIR = $(PKGDIR)/root
 INSTALLROOT = $(DESTDIR)
 INSTALLDIR = $(DESTDIR)/opt/testfarm

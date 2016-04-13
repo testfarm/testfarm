@@ -23,11 +23,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
 
+## Getting source code
+```console
+$ git clone --recursive https://github.com/testfarm/testfarm.git
+```
+
 ## Compiling
 ### TestFarm Core - The main lib and application
 ```console
-$ make -C interface
-$ make -C core
+$ make -C testfarm/interface
+$ make -C testfarm/core
 ```
 ### TestFarm Virtual User - The graphic HMI analysing interface
 ```console

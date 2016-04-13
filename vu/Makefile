@@ -19,24 +19,24 @@
 ##    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-PKGNAME = testfarm-vu
+PKGNAME := testfarm-vu
 
-SUBDIRS = public common capture client display ocr filters
+SUBDIRS = public common capture client display filters
 
 include ../tools/defs.mk
 
 all:
 	for d in $(SUBDIRS); do \
-	  $(MAKE) -C $$d PKGNAME=$(PKGNAME) all || exit 1; \
+	  $(MAKE) -C $$d all || exit 1; \
 	done
 
 install:
 	$(RM) $(DESTDIR)
 	for d in $(SUBDIRS); do \
-	  $(MAKE) -C $$d PKGNAME=$(PKGNAME) install || exit 1; \
+	  $(MAKE) -C $$d install || exit 1; \
 	done
 
 clean::
 	for d in $(SUBDIRS); do \
-	  $(MAKE) -C $$d PKGNAME=$(PKGNAME) clean; \
+	  $(MAKE) -C $$d clean; \
 	done

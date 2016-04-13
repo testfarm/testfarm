@@ -1,9 +1,6 @@
-#!/bin/sh  -f
-
-## TestFarm Virtual User
-## Tesseract OCR agent launcher
 ##
-## (c) TestFarm.org 2010
+## TestFarm
+## Global build rule
 ##
 ## This file is part of TestFarm,
 ## the Test Automation Tool for Embedded Software.
@@ -19,11 +16,25 @@
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 ##
-## You should have received a copy of the GNU General Public License
-## along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
-##
 
-shmid=$1
-shift
+SUBDIRS = interface core vu ocr
 
-exec tesseract $shmid - $* batch.nochop server
+all:
+	for d in $(SUBDIRS); do \
+	  $(MAKE) -C $$d all || exit 1; \
+	done
+
+deb:
+	for d in $(SUBDIRS); do \
+	  $(MAKE) -C $$d deb || exit 1; \
+	done
+
+rpm:
+	for d in $(SUBDIRS); do \
+	  $(MAKE) -C $$d rpm || exit 1; \
+	done
+
+clean::
+	for d in $(SUBDIRS); do \
+	  $(MAKE) -C $$d clean; \
+	done

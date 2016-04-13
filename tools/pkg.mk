@@ -19,6 +19,8 @@
 ##    along with TestFarm.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+ifdef PKGNAME
+
 ifeq ($(VERSION),)
 VERSION ?= $(shell $(dir $(lastword $(MAKEFILE_LIST)))/gitversion.sh)
 endif
@@ -31,7 +33,6 @@ DEBNAME = $(PKGNAME)_$(VERSION)_$(DEBARCH).deb
 
 MKDIR ?= mkdir -p
 
-ifdef PKGNAME
 check_pkg_vars:
 ifdef PKGDIR
 	$(MKDIR) $(PKGDIR) $(DELIVERY_DIR)
@@ -65,10 +66,8 @@ deb: check check_pkg_vars install
 	    -e 's/@DEPS@/$(PKGDEPS)/' \
 	    control.in > $(DESTDIR)/DEBIAN/control
 	fakeroot dpkg-deb --build $(DESTDIR) $(DELIVERY_DIR)/$(DEBNAME)
-else
-rpm deb:
-	@echo "Variable PKGNAME not defined"; false
-endif
+
+endif  # PKGNAME
 
 pkgclean:
 ifdef PKGDIR

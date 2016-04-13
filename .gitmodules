@@ -1,0 +1,3 @@
+[submodule "ocr/cosi"]
+	path = ocr/cosi
+	url = https://github.com/testfarm/cosi.git

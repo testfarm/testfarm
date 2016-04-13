@@ -44,23 +44,23 @@ PROC_OBJS = $(PROC_SRCS:%.c=%.o)
 
 ##### RULES
 all: $(LIB_OBJS) $(PROC_OBJS)
-	@for i in $(SUBDIRS);\
-	  do (cd $$i; $(MAKE) all);\
+	@for dir in $(SUBDIRS); do \
+	  $(MAKE) -C $$dir all || exit 1;\
 	done
 
 install:
-	@for i in $(SUBDIRS);\
-	  do (cd $$i; $(MAKE) install);\
+	@for dir in $(SUBDIRS); do \
+	  $(MAKE) -C $$dir install || exit 1;\
 	done
 
 deps::
-	@for i in $(SUBDIRS);\
-	  do (cd $$i; $(MAKE) deps);\
+	@for dir in $(SUBDIRS); do \
+	  $(MAKE) -C $$dir deps || exit 1;\
 	done
 
 clean::
-	@for i in $(SUBDIRS);\
-	  do (cd $$i; $(MAKE) clean);\
+	@for dir in $(SUBDIRS); do \
+	  $(MAKE) -C $$dir clean;\
 	done
 
 -include .deps

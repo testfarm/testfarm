@@ -45,9 +45,9 @@ typedef struct ocr_ctx_s ocr_ctx_t;
 
 #define dprintf(args...) //fprintf(stderr, "[DEBUG:OCR] " args);
 
-#define OCR_LIB_DIR          "/usr/lib/testfarm-vu/ocr"
+#define OCR_BIN_DIR          "/usr/bin"
 #define OCR_DEFAULT          "gocr"
-#define OCR_LAUNCHER_SUFFIX  ".sh"
+#define OCR_LAUNCHER_SUFFIX  "-srv"
 
 
 typedef struct {
@@ -336,7 +336,7 @@ int ocr_set_agent(ocr_t *ocr, char *ocr_agent, int ocr_argc, char *ocr_argv[])
 
   /* Check OCR agent launcher exists */
   if ( ocr_agent != NULL ) {
-    snprintf(launcher, sizeof(launcher), OCR_LIB_DIR G_DIR_SEPARATOR_S "%s" OCR_LAUNCHER_SUFFIX, ocr_agent);
+    snprintf(launcher, sizeof(launcher), OCR_BIN_DIR G_DIR_SEPARATOR_S "%s" OCR_LAUNCHER_SUFFIX, ocr_agent);
     if ( access(launcher, X_OK) ) {
       fprintf(stderr, "Cannot find OCR agent launcher '%s': %s\n", launcher, strerror(errno));
       return -1;
