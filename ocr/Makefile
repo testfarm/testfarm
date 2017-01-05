@@ -23,7 +23,7 @@ include ../tools/defs.mk
 
 ##### $(BINS) and $(LIBS) DEPENDENCIES
 all:
-#	git submodule update --init
+	git submodule update --init
 	make -C cosi all
 
 clean::
