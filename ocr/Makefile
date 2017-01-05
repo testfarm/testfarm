@@ -23,15 +23,15 @@ include ../tools/defs.mk
 
 ##### $(BINS) and $(LIBS) DEPENDENCIES
 all:
-	git submodule update --init
+#	git submodule update --init
 	make -C cosi all
 
 clean::
 	make -C cosi clean
 
 rpm:
-	make -C cosi rpm DESTDIR=$(abspath $(DESTDIR)) PKGDIR=$(abspath $(PKGDIR))
+	make -C cosi rpm PKGDIR=$(abspath $(PKGDIR))
 	mv -fv $(PKGDIR)/*.rpm $(DELIVERY_DIR)/
 
 deb:
-	make -C cosi deb DESTDIR=$(abspath $(DESTDIR)) PKGDIR=$(abspath $(DELIVERY_DIR))
+	make -C cosi deb PKGDIR=$(abspath $(DELIVERY_DIR))
