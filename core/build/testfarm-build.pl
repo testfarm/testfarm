@@ -134,7 +134,7 @@ sub _PANIC {
 # Glade Interface definition
 ###########################################################
 
-my $glade_interface_file = getcwd().'/testfarm-build.glade';
+my $glade_interface_file = 'testfarm-build.glade';
 
 
 sub glade_interface {
